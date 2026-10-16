@@ -98,28 +98,62 @@ void Status()
 // SEKCJA A: INFORMACJE I MAPA. Wlasciciel: osoba A.
 string NazwaPokoju(int numer)
 {
-    // TODO A1: zwroc nazwe dla 1, 2, 3, 4 oraz wartosc dla nieznanego numeru.
+    if(numer == 1)
+    {
+        return "Recepcja";
+    }else if(numer == 2)
+    {
+        return "Magazyn";
+    }else if(numer == 3)
+    {
+        return "Serwerownia";
+    }else if(numer == 4)
+    {
+        return "Wyjście";
+    }
     return "Pokoj " + numer;
 }
 
 void Pomoc()
 {
-    // TODO A2: wypisz wszystkie komendy oraz koszt czynnosci.
-    Console.WriteLine("TODO A: pomoc, status, mapa, opis, lewo, prawo,");
-    Console.WriteLine("karta, bezpiecznik, napraw, wyjdz, start, koniec.");
+    Console.WriteLine("------ P O M O C ------");
+    Console.WriteLine("pomoc        - polecenia i zasady");
+    Console.WriteLine("status       - dane rozgrywki");
+    Console.WriteLine("mapa         - cztery pokoje i jeden znacznik");
+    Console.WriteLine("opis         - rozejrzenie się w aktualnym pokoju");
+    Console.WriteLine("lewo, prawo  - ruch o jeden pokój");
+    Console.WriteLine("karta        - próba zabrania karty");
+    Console.WriteLine("bezpiecznik  - próba zabrania bezpiecznika");
+    Console.WriteLine("napraw       - próba naprawy zasilania");
+    Console.WriteLine("wyjdz        - próba otwarcia drzwi (czynność w grze, nie wyjście z programu)");
+    Console.WriteLine("start        - nowa gra");
+    Console.WriteLine("koniec       - zamknięcie programu");
 }
 
 void Mapa()
 {
-    // TODO A3: petla for, numery 1..4, jeden znacznik aktualnego pokoju.
-    Console.WriteLine("TODO A: mapa.");
+    for(int i=1; i <= 4; i++)
+    {
+        string space = "";
+        for(int s=0; s<=i-1; s++){ space += "   "; }
+        //// Console.WriteLine(space + "---------------");
+        string marker = "";
+        if(pokoj == i){marker = "<-- jesteś tutaj";}
+        Console.WriteLine(space + "| " + NazwaPokoju(i) + " " + marker);
+        //// Console.WriteLine(space + "---------------");
+    }
 }
 
 void Rozejrzyj()
 {
     Console.WriteLine("Jestes w: " + NazwaPokoju(pokoj));
     // TODO A4: opis zalezy od pokoju oraz obecnosci przedmiotow/zasilania.
-    Console.WriteLine("TODO A: opis pokoju.");
+    // if(pokoj == 1)
+    // {
+        
+    // }
+
+    Console.WriteLine("");
 }
 
 // SEKCJA B: RUCH. Wlasciciel: osoba B.
