@@ -8,9 +8,9 @@ Autor zapisu TESTY.md: …
 
 | Osoba | Sekcja | Branch | Osoba sprawdzająca |
 |---|---|---|---|
-| … | … | … | … |
-| … | … | … | … |
-| … | … | … | … |
+| ib4tor | B | ib4tor-feature | … |
+| igorroo | A | igorroo-feature | … |
+| JaLloyd0 | C | JaLloyd0-feature | … |
 
 Nie zmieniamy kontraktu bez uzgodnienia. Nie formatujemy całego Program.cs.
 
