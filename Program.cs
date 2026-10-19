@@ -11,6 +11,20 @@ bool koniec = false;
 bool wygrana = false;
 int movesCounter = 0;
 
+string EnergiaPasek()
+{
+    string bar = "[";
+    for(int i = 0; i < energia; i++)
+    {
+        bar += '#';
+    }
+    for(int i = 0; i < MAKS_ENERGIA-energia; i++)
+    {
+        bar += "_";
+    }
+    return bar+"]";
+}
+
 // SEKCJA 0: GOTOWY SILNIK NAUCZYCIELA. Nie zmieniaj w zadaniu podstawowym.
 Start();
 while (true)
@@ -72,7 +86,8 @@ void Start()
 void ZakonczTure()
 {
     energia = energia - 1;
-    Console.WriteLine("Pozostala energia: " + energia);
+    // Console.WriteLine("Pozostala energia: " + energia);
+    Console.WriteLine("Energia: " + EnergiaPasek());
     if (wygrana)
     {
         koniec = true;
@@ -90,7 +105,7 @@ void Status()
 {
     Console.WriteLine("Pokoj: " + pokoj);
     Console.WriteLine("Ilosc krokow: " + movesCounter);
-    Console.WriteLine("Energia: " + energia + "/" + MAKS_ENERGIA);
+    Console.WriteLine("Energia: " + EnergiaPasek());
     Console.WriteLine("Karta: " + karta);
     Console.WriteLine("Bezpiecznik: " + bezpiecznik);
     Console.WriteLine("Zasilanie: " + zasilanie);
