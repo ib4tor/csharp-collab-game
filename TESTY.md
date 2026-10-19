@@ -32,4 +32,4 @@ karta > prawo > bezpiecznik > prawo > napraw > prawo > wyjdz
 - Kroki od startu: prawo prawo napraw
 - Oczekiwane: monit: nie posiadasz bezpiecznika
 - Rzeczywiste: napraw - true
-- Poprawka i ponowna próba: …
+- Poprawka i ponowna próba: zrobione

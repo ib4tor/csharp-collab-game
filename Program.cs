@@ -159,8 +159,6 @@ void Rozejrzyj()
     {
         Console.WriteLine("przypomnij kartę i prąd");
     }
-
-    Console.WriteLine("");
 }
 
 // SEKCJA B: RUCH. Wlasciciel: osoba B.
