@@ -9,6 +9,7 @@ bool bezpiecznik = false;
 bool zasilanie = false;
 bool koniec = false;
 bool wygrana = false;
+int movesCounter = 0;
 
 string EnergiaPasek()
 {
@@ -68,6 +69,7 @@ while (true)
 
 void Start()
 {
+    movesCounter = 0;
     pokoj = 1;
     energia = MAKS_ENERGIA;
     karta = false;
@@ -102,7 +104,7 @@ void ZakonczTure()
 void Status()
 {
     Console.WriteLine("Pokoj: " + pokoj);
-    // Console.WriteLine("Energia: " + energia + "/" + MAKS_ENERGIA);
+    Console.WriteLine("Ilosc krokow: " + movesCounter);
     Console.WriteLine("Energia: " + EnergiaPasek());
     Console.WriteLine("Karta: " + karta);
     Console.WriteLine("Bezpiecznik: " + bezpiecznik);
@@ -202,6 +204,7 @@ void Idz(string kierunek)
     }
     // TODO B4: zatwierdz pokoj, wywolaj Rozejrzyj i raz ZakonczTure.
     pokoj = nastepnyPokoj;
+    movesCounter+=1;
     Rozejrzyj();
     ZakonczTure();
 }
@@ -213,6 +216,7 @@ void Akcja(string co)
         if(pokoj == 1 && karta == false){
             karta = true;
             Console.WriteLine("Zbierasz karte.");
+            movesCounter+=1;
             ZakonczTure();
         }else if(pokoj != 1){
             Console.WriteLine("Tutaj nie ma karty do zebrania.");
@@ -225,6 +229,7 @@ void Akcja(string co)
         if(pokoj == 2 && bezpiecznik == false && zasilanie == false){
             bezpiecznik = true;
             Console.WriteLine("Zbierasz bezpiecznik.");
+            movesCounter+=1;
             ZakonczTure();
         }else if(pokoj != 2){
             Console.WriteLine("Tutaj nie ma bezpiecznika do zebrania.");
@@ -239,12 +244,15 @@ void Akcja(string co)
         if(pokoj == 3 && bezpiecznik == true && zasilanie == false){
             zasilanie = true;
             bezpiecznik = false;
+            movesCounter+=1;
             Console.WriteLine("Naprawiasz skrzynke z bezpiecznikami. Przywrocono zasilanie.");
             ZakonczTure();
         }else if(pokoj != 3){
             Console.WriteLine("Tutaj nie ma skrzynki z bezpiecznikami.");
         }else if(zasilanie == true && pokoj == 3){
             Console.WriteLine("Zasilanie jest juz wlaczone.");
+        }else if(pokoj == 3){
+            Console.WriteLine("Nie posiadasz bezpiecznika."); //tak
         }
     }
 
@@ -252,6 +260,7 @@ void Akcja(string co)
         if(pokoj == 4 && karta && zasilanie){
             wygrana = true;
             koniec = true;
+            movesCounter+=1;
             ZakonczTure();
         }else if(pokoj != 4){
             Console.WriteLine("Tutaj nie ma wyjscia.");
