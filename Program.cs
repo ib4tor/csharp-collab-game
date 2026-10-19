@@ -148,10 +148,20 @@ void Rozejrzyj()
 {
     Console.WriteLine("Jestes w: " + NazwaPokoju(pokoj));
     // TODO A4: opis zalezy od pokoju oraz obecnosci przedmiotow/zasilania.
-    // if(pokoj == 1)
-    // {
-        
-    // }
+    if(pokoj == 1)
+    {
+        Console.WriteLine("karta jest na biurku tylko przed zabraniem");
+    }else if(pokoj == 2)
+    {
+        Console.WriteLine("bezpiecznik jest na półce tylko, gdy nie ma go w kieszeni i nie jest zamontowany");
+    }else if(pokoj == 3)
+    {
+        if(zasilanie) Console.WriteLine("zasilanie włączone");
+        if(!zasilanie) Console.WriteLine("zasilanie wyłączone");
+    }else if(pokoj == 4)
+    {
+        Console.WriteLine("przypomnij kartę i prąd");
+    }
 
     Console.WriteLine("");
 }
