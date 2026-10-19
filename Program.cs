@@ -176,9 +176,58 @@ void Idz(string kierunek)
 // SEKCJA C: PRZEDMIOTY I WYGRANA. Wlasciciel: osoba C.
 void Akcja(string co)
 {
-    // TODO C1: odrzuc akcje po zakonczeniu gry.
-    // TODO C2: obsluz karta, bezpiecznik, napraw, wyjdz zgodnie z kontraktem.
-    // TODO C3: przy odmowie wypisz powod i wykonaj return.
-    // TODO C4: tylko po udanej akcji wywolaj raz ZakonczTure.
-    Console.WriteLine("TODO C: akcja " + co);
+    if(co == "karta"){
+        if(pokoj == 1 && karta == false){
+            karta = true;
+            Console.WriteLine("Zbierasz karte.");
+            ZakonczTure();
+        }else if(pokoj != 1){
+            Console.WriteLine("Tutaj nie ma karty do zebrania.");
+        }else if(karta == true){
+            Console.WriteLine("Posiadasz juz karte.");
+        }
+    }
+
+    if(co == "bezpiecznik"){
+        if(pokoj == 2 && bezpiecznik == false && zasilanie == false){
+            bezpiecznik = true;
+            Console.WriteLine("Zbierasz bezpiecznik.");
+            ZakonczTure();
+        }else if(pokoj != 2){
+            Console.WriteLine("Tutaj nie ma bezpiecznika do zebrania.");
+        }else if(zasilanie == true && pokoj == 2){
+            Console.WriteLine("Zasilanie jest juz wlaczone.");
+        }else if(pokoj == 2 && bezpiecznik == true && zasilanie == false){
+            Console.WriteLine("Posiadasz juz bezpiecznik.");
+        }
+    }
+
+    if(co == "napraw"){
+        if(pokoj == 3 && bezpiecznik == true && zasilanie == false){
+            zasilanie = true;
+            bezpiecznik = false;
+            Console.WriteLine("Naprawiasz skrzynke z bezpiecznikami. Przywrocono zasilanie.");
+            ZakonczTure();
+        }else if(pokoj != 3){
+            Console.WriteLine("Tutaj nie ma skrzynki z bezpiecznikami.");
+        }else if(zasilanie == true && pokoj == 3){
+            Console.WriteLine("Zasilanie jest juz wlaczone.");
+        }
+    }
+
+    if(co == "wyjdz"){
+        if(pokoj == 4 && karta && zasilanie){
+            wygrana = true;
+            koniec = true;
+            ZakonczTure();
+        }else if(pokoj != 4){
+            Console.WriteLine("Tutaj nie ma wyjscia.");
+        }else if(pokoj == 4 && karta == false && zasilanie == false){
+            Console.WriteLine("Nie posiadasz karty oraz zasilanie nie jest wlaczone.");
+        }else if(pokoj == 4 && karta == false){
+            Console.WriteLine("Nie posiadasz karty.");
+        }else if(pokoj == 4 && zasilanie == false){
+            Console.WriteLine("Zasilanie nie jest wlaczone.");
+        }
+    }
 }
