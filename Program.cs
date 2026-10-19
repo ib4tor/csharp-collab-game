@@ -136,18 +136,15 @@ void Mapa()
     {
         string space = "";
         for(int s=0; s<=i-1; s++){ space += "   "; }
-        //// Console.WriteLine(space + "---------------");
         string marker = "";
         if(pokoj == i){marker = "<-- jesteś tutaj";}
         Console.WriteLine(space + "| " + NazwaPokoju(i) + " " + marker);
-        //// Console.WriteLine(space + "---------------");
     }
 }
 
 void Rozejrzyj()
 {
     Console.WriteLine("Jestes w: " + NazwaPokoju(pokoj));
-    // TODO A4: opis zalezy od pokoju oraz obecnosci przedmiotow/zasilania.
     if(pokoj == 1)
     {
         Console.WriteLine("karta jest na biurku tylko przed zabraniem");
