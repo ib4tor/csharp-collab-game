@@ -232,6 +232,8 @@ void Akcja(string co)
             Console.WriteLine("Tutaj nie ma skrzynki z bezpiecznikami.");
         }else if(zasilanie == true && pokoj == 3){
             Console.WriteLine("Zasilanie jest juz wlaczone.");
+        }else if(pokoj == 3){
+            Console.WriteLine("Nie posiadasz bezpiecznika.")
         }
     }
 
