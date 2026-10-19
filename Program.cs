@@ -126,10 +126,30 @@ void Rozejrzyj()
 void Idz(string kierunek)
 {
     // TODO B1: odrzuc ruch po zakonczeniu gry (return).
+    if(koniec){
+        Console.WriteLine("Koniec gry");
+        return;
+    }
     // TODO B2: policz nastepnyPokoj, nie zmieniaj jeszcze wspolnego pokoj.
+    int nastepnyPokoj = pokoj;
+    if(kierunek == "prawo"){
+        nastepnyPokoj += 1;
+    }else if(kierunek == "lewo"){
+        nastepnyPokoj -= 1;
+    } else {
+        Console.WriteLine("Nieznany kierunek, stoisz w miejscu");
+        return;
+    }
     // TODO B3: odrzuc nieznany kierunek i ruch poza pokoje 1..4.
+    if(kierunek == "góra" || kierunek == "dół" || nastepnyPokoj == 5 && kierunek == "prawo" || nastepnyPokoj == 0 && kierunek == "lewo") {
+        Console.WriteLine("Udzerzyłeś w ściane!!! Energia nie zostala zabrana.");
+        return;
+    }
     // TODO B4: zatwierdz pokoj, wywolaj Rozejrzyj i raz ZakonczTure.
+    pokoj = nastepnyPokoj;
     Console.WriteLine("TODO B: ruch " + kierunek);
+    Rozejrzyj();
+    ZakonczTure();
 }
 
 // SEKCJA C: PRZEDMIOTY I WYGRANA. Wlasciciel: osoba C.
