@@ -188,7 +188,6 @@ void Idz(string kierunek)
     }
     // TODO B4: zatwierdz pokoj, wywolaj Rozejrzyj i raz ZakonczTure.
     pokoj = nastepnyPokoj;
-    Console.WriteLine("TODO B: ruch " + kierunek);
     Rozejrzyj();
     ZakonczTure();
 }
