@@ -11,6 +11,24 @@ bool koniec = false;
 bool wygrana = false;
 int movesCounter = 0;
 
+string OcenaEnergii(int wartosc)
+{
+    if(wartosc > MAKS_ENERGIA || wartosc < 0) return "Nieprawidłowa wartość";
+    if(wartosc >= 7)
+    {
+        return "Duży zapas";
+    }else if(wartosc >= 4)
+    {
+        return "Uważaj na zbędne ruchy";
+    }else if(wartosc >= 1)
+    {
+        return "Niski zapas";
+    }else
+    {
+        return "Brak energii";
+    }
+}
+
 string EnergiaPasek()
 {
     string bar = "[";
@@ -105,7 +123,7 @@ void Status()
 {
     Console.WriteLine("Pokoj: " + pokoj);
     Console.WriteLine("Ilosc krokow: " + movesCounter);
-    Console.WriteLine("Energia: " + EnergiaPasek());
+    Console.WriteLine("Energia: " + EnergiaPasek() + " - " + OcenaEnergii(energia));
     Console.WriteLine("Karta: " + karta);
     Console.WriteLine("Bezpiecznik: " + bezpiecznik);
     Console.WriteLine("Zasilanie: " + zasilanie);
