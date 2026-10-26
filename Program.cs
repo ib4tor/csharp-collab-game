@@ -9,7 +9,12 @@ bool bezpiecznik = false;
 bool zasilanie = false;
 bool koniec = false;
 bool wygrana = false;
+bool R1 = true;
+bool R2 = false;
+bool R3 = false;
+bool R4 = false;
 int movesCounter = 0;
+int visitedRooms = 0;
 
 string EnergiaPasek()
 {
@@ -69,6 +74,7 @@ while (true)
 
 void Start()
 {
+    visitedRooms = 1;
     movesCounter = 0;
     pokoj = 1;
     energia = MAKS_ENERGIA;
@@ -105,6 +111,7 @@ void Status()
 {
     Console.WriteLine("Pokoj: " + pokoj);
     Console.WriteLine("Ilosc krokow: " + movesCounter);
+    Console.WriteLine("Ilosc odwiedzonych pokoi: " + visitedRooms);
     Console.WriteLine("Energia: " + EnergiaPasek());
     Console.WriteLine("Karta: " + karta);
     Console.WriteLine("Bezpiecznik: " + bezpiecznik);
@@ -215,7 +222,23 @@ void Idz(string kierunek)
         return;
     }
     // TODO B4: zatwierdz pokoj, wywolaj Rozejrzyj i raz ZakonczTure.
+    if(pokoj == 1 && R1 == false){
+        R1 = true;
+        visitedRooms+=1;
+    }
     pokoj = nastepnyPokoj;
+    if(pokoj == 2 && R2 == false){
+        R2 = true;
+        visitedRooms+=1;
+    }
+    if(pokoj == 3 && R3 == false){
+        R3 = true;
+        visitedRooms+=1;
+    }
+    if(pokoj == 4 && R4 == false){
+        R4 = true;
+        visitedRooms+=1;
+    }
     movesCounter+=1;
     Rozejrzyj();
     ZakonczTure();
