@@ -22,6 +22,10 @@ Każdą próbę zaczynamy od start. Po sekwencji wpisujemy status. Komendy z tab
 | 14 | Po końcu gry: start, status | Pokój 1, energia 10, wszystkie flagi False | OK |
 | 15 | Wpisz spacje + PRAWO + spacje | Pokój 2, energia 9; wielkość liter i skrajne spacje nie przeszkadzają | OK |
 | 16 | koniec | Aplikacja wraca do terminala | OK |
+| 17 | start, status |	1/4 | 1/4|
+| 18 | start, prawo, lewo, prawo, status |	2/4, a nie 4/4. | 2/4|
+| 19 | start, prawo, prawo, prawo, status | 4/4. | 4/4 |
+| 20 | start, status po poprzedniej próbie	Ponownie | 1/4 | 1/4|
 
 ## Nasza droga zwycięska
 

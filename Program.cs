@@ -111,7 +111,7 @@ void Status()
 {
     Console.WriteLine("Pokoj: " + pokoj);
     Console.WriteLine("Ilosc krokow: " + movesCounter);
-    Console.WriteLine("Ilosc odwiedzonych pokoi: " + visitedRooms);
+    Console.WriteLine("Ilosc odwiedzonych pokoi: " + visitedRooms + "/4");
     Console.WriteLine("Energia: " + EnergiaPasek());
     Console.WriteLine("Karta: " + karta);
     Console.WriteLine("Bezpiecznik: " + bezpiecznik);
