@@ -11,6 +11,24 @@ bool koniec = false;
 bool wygrana = false;
 int movesCounter = 0;
 
+string OcenaEnergii(int wartosc)
+{
+    if(wartosc > MAKS_ENERGIA || wartosc < 0) return "Nieprawidłowa wartość";
+    if(wartosc >= 7)
+    {
+        return "Duży zapas";
+    }else if(wartosc >= 4)
+    {
+        return "Uważaj na zbędne ruchy";
+    }else if(wartosc >= 1)
+    {
+        return "Niski zapas";
+    }else
+    {
+        return "Brak energii";
+    }
+}
+
 string EnergiaPasek()
 {
     string bar = "[";
@@ -105,7 +123,7 @@ void Status()
 {
     Console.WriteLine("Pokoj: " + pokoj);
     Console.WriteLine("Ilosc krokow: " + movesCounter);
-    Console.WriteLine("Energia: " + EnergiaPasek());
+    Console.WriteLine("Energia: " + EnergiaPasek() + " - " + OcenaEnergii(energia));
     Console.WriteLine("Karta: " + karta);
     Console.WriteLine("Bezpiecznik: " + bezpiecznik);
     Console.WriteLine("Zasilanie: " + zasilanie);
@@ -134,18 +152,30 @@ string NazwaPokoju(int numer)
 
 void Pomoc()
 {
-    Console.WriteLine("------ P O M O C ------");
-    Console.WriteLine("pomoc        - polecenia i zasady");
-    Console.WriteLine("status       - dane rozgrywki");
-    Console.WriteLine("mapa         - cztery pokoje i jeden znacznik");
-    Console.WriteLine("opis         - rozejrzenie się w aktualnym pokoju");
-    Console.WriteLine("lewo, prawo  - ruch o jeden pokój");
-    Console.WriteLine("karta        - próba zabrania karty");
-    Console.WriteLine("bezpiecznik  - próba zabrania bezpiecznika");
-    Console.WriteLine("napraw       - próba naprawy zasilania");
-    Console.WriteLine("wyjdz        - próba otwarcia drzwi (czynność w grze, nie wyjście z programu)");
-    Console.WriteLine("start        - nowa gra");
-    Console.WriteLine("koniec       - zamknięcie programu");
+    Console.WriteLine("Z czym potrzebujesz pomocy?\n 1.RUCH \n 2.PRZEDMIOTY \n 3.INFORMACJE \n 4.STEROWANIE ROZGRYWKA");
+    string? dPomoc = Console.ReadLine();
+    if(dPomoc == "1"){
+        Console.WriteLine("------ R U C H ------");
+        Console.WriteLine("lewo  - ruch o jeden pokój w lewo (zabiera 1 energii)");
+        Console.WriteLine("prawo  - ruch o jeden pokój w prawo (zabiera 1 energii)");
+    } else if(dPomoc == "2"){
+        Console.WriteLine("------ P R Z E D M I O T Y i D Z I A Ł A N I A ------");
+        Console.WriteLine("karta        - próba zabrania karty (zabiera 1 energii)");
+        Console.WriteLine("bezpiecznik  - próba zabrania bezpiecznika (zabiera 1 energii)");
+        Console.WriteLine("napraw       - próba naprawy zasilania (zabiera 1 energii, mozna naprawic gdy ma sie bezpiecznik)");
+        Console.WriteLine("wyjdz        - próba otwarcia drzwi (czynność w grze, nie wyjście z programu)");
+    } else if(dPomoc == "3"){
+        Console.WriteLine("------ I N F O R M A C J E ------");
+        Console.WriteLine("pomoc        - polecenia i zasady");
+        Console.WriteLine("status       - dane rozgrywki");
+        Console.WriteLine("mapa         - cztery pokoje i jeden znacznik");
+        Console.WriteLine("opis         - rozejrzenie się w aktualnym pokoju");
+    } else if(dPomoc == "4") {
+        Console.WriteLine("start        - nowa gra");
+        Console.WriteLine("koniec       - zamknięcie programu (wyjście z gry)");
+    } else{ 
+        Console.WriteLine("Nieznane polecenie");
+    }
 }
 
 void Mapa()

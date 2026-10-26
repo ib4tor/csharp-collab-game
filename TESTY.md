@@ -22,6 +22,7 @@ Każdą próbę zaczynamy od start. Po sekwencji wpisujemy status. Komendy z tab
 | 14 | Po końcu gry: start, status | Pokój 1, energia 10, wszystkie flagi False | OK |
 | 15 | Wpisz spacje + PRAWO + spacje | Pokój 2, energia 9; wielkość liter i skrajne spacje nie przeszkadzają | OK |
 | 16 | koniec | Aplikacja wraca do terminala | OK |
+| 17 | prawo, **status**, prawo, lewo, prawo, **status**, prawo, lewo, prawo, **status**, lewo, prawo, lewo, **status** | Duzy zapas > Uważaj na zbędne ruchy > Niski zapas > Brak energii | OK |
 | 18 | prawo, opis | Jestes w: Magazyn, Poprzedni pokój: Recepcja, Następny pokój: Serwerownia, Możliwe kierunki: prawo, lewo | OK |
 | 19 | opis | Jestes w: Recepcja, Następny pokój: Magazyn, Możliwy kierunek: prawo | OK |
 
