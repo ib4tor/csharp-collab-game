@@ -25,6 +25,18 @@ string EnergiaPasek()
     return bar+"]";
 }
 
+string listaPostepu()
+{
+    char marker = '*';
+    char kartaMarker = karta ? marker : ' ';
+    char bezpiecznikMarker = bezpiecznik ? marker : ' ';
+    if(!bezpiecznik && zasilanie) bezpiecznikMarker = marker;
+    char zasilanieMarker = zasilanie ? marker : ' ';
+    char wygranaMarker = wygrana ? marker : ' ';
+    
+    return $"[{kartaMarker}] znaleziono kartę\n[{bezpiecznikMarker}] znaleziono bezpiecznik\n[{zasilanieMarker}] przywrócono zasilanie\n[{wygranaMarker}] Wygrana!";
+}
+
 // SEKCJA 0: GOTOWY SILNIK NAUCZYCIELA. Nie zmieniaj w zadaniu podstawowym.
 Start();
 while (true)
@@ -106,6 +118,7 @@ void Status()
     Console.WriteLine("Pokoj: " + pokoj);
     Console.WriteLine("Ilosc krokow: " + movesCounter);
     Console.WriteLine("Energia: " + EnergiaPasek());
+    Console.WriteLine(listaPostepu());
     Console.WriteLine("Karta: " + karta);
     Console.WriteLine("Bezpiecznik: " + bezpiecznik);
     Console.WriteLine("Zasilanie: " + zasilanie);

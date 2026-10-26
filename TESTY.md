@@ -22,14 +22,17 @@ Każdą próbę zaczynamy od start. Po sekwencji wpisujemy status. Komendy z tab
 | 14 | Po końcu gry: start, status | Pokój 1, energia 10, wszystkie flagi False | OK |
 | 15 | Wpisz spacje + PRAWO + spacje | Pokój 2, energia 9; wielkość liter i skrajne spacje nie przeszkadzają | OK |
 | 16 | koniec | Aplikacja wraca do terminala | OK |
+| 17 | start, status | wszystkie etapy nie wykonane | OK |
+| 18 | start, prawo, bezpiecznik, prawo, napraw, status | Zdobycie bezpiecznika i naprawa wykonane; karta i wyjście niewykonane | OK |
+| 19 | Po dowolnej wygranej: status, start, status | Najpierw wszystkie etapy wykonane, następnie wszystkie wyzerowane. | OK |
 
 ## Nasza droga zwycięska
 
 karta > prawo > bezpiecznik > prawo > napraw > prawo > wyjdz
 
 ## Znaleziony błąd
-- Wersja/commit: 9b99117
-- Kroki od startu: prawo prawo napraw
-- Oczekiwane: monit: nie posiadasz bezpiecznika
-- Rzeczywiste: napraw - true
-- Poprawka i ponowna próba: zrobione
+- Wersja/commit: 
+- Kroki od startu: 
+- Oczekiwane: monit: 
+- Rzeczywiste:
+- Poprawka i ponowna próba:
