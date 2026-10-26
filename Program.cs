@@ -193,6 +193,22 @@ void Mapa()
 void Rozejrzyj()
 {
     Console.WriteLine("Jestes w: " + NazwaPokoju(pokoj));
+    if(pokoj == 1){
+        Console.WriteLine($"Następny pokój: {NazwaPokoju(pokoj + 1)}");
+        Console.WriteLine($"Możliwy kierunek: prawo");
+    }else if(pokoj < 4){
+        Console.WriteLine($"Poprzedni pokój: {NazwaPokoju(pokoj - 1)}");
+        Console.WriteLine($"Następny pokój: {NazwaPokoju(pokoj + 1)}");
+        Console.WriteLine($"Możliwe kierunki: prawo, lewo");
+
+    }else if(pokoj == 4){
+        Console.WriteLine($"Poprzedni pokój: {NazwaPokoju(pokoj - 1)}");
+        Console.WriteLine($"Możliwy kierunek: lewo");
+    }
+    if(energia == 0){
+        Console.WriteLine("Brak energi. Nałożono blokade ruchu.");
+    }
+
     if(pokoj == 1)
     {
         Console.WriteLine("karta jest na biurku tylko przed zabraniem");
