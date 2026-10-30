@@ -25,6 +25,10 @@ Każdą próbę zaczynamy od start. Po sekwencji wpisujemy status. Komendy z tab
 | 17 | start, status | wszystkie etapy nie wykonane | OK |
 | 18 | start, prawo, bezpiecznik, prawo, napraw, status | Zdobycie bezpiecznika i naprawa wykonane; karta i wyjście niewykonane | OK |
 | 19 | Po dowolnej wygranej: status, start, status | Najpierw wszystkie etapy wykonane, następnie wszystkie wyzerowane. | OK |
+| 20 | prawo, **status**, prawo, lewo, prawo, **status**, prawo, lewo, prawo, **status**, lewo, prawo, lewo, **status** | Duzy zapas > Uważaj na zbędne ruchy > Niski zapas > Brak energii | OK |
+| 21 | prawo, opis | Jestes w: Magazyn, Poprzedni pokój: Recepcja, Następny pokój: Serwerownia, Możliwe kierunki: prawo, lewo | OK |
+| 22 | opis | Jestes w: Recepcja, Następny pokój: Magazyn, Możliwy kierunek: prawo | OK |
+
 
 ## Nasza droga zwycięska
 
