@@ -63,6 +63,7 @@ void PokazOdkrycia(){
     Console.WriteLine($"Odkryte: {IloscOdkrytych(odwiedzonePokoje)}"); 
 }
 
+
 string listaPostepu()
 {
     char marker = '*';
