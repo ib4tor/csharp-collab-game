@@ -10,6 +10,7 @@ bool zasilanie = false;
 bool koniec = false;
 bool wygrana = false;
 int movesCounter = 0;
+bool[] odwiedzonePokoje = {false,false,false,false};
 string[] pokoje = ["Recepcja", "Magazyn", "Serwerownia"];
 
 string OcenaEnergii(int wartosc)
@@ -28,6 +29,15 @@ string OcenaEnergii(int wartosc)
     {
         return "Brak energii";
     }
+}
+
+string IloscOdkrytych(bool[] tablica)
+{
+    int zliczone = 0;
+    for(int i = 0; i < tablica.Length; i++) {
+        if (tablica[i]) zliczone++;
+    }
+    return zliczone + "/4";
 }
 
 string EnergiaPasek()
@@ -108,6 +118,8 @@ void Start()
     zasilanie = false;
     koniec = false;
     wygrana = false;
+    odwiedzonePokoje = new bool[] {false,false,false,false};
+    odwiedzonePokoje[0] = true;
     Console.WriteLine("UCIECZKA Z SERWEROWNI: PIATEK, 16:59.");
     Console.WriteLine("Administrator napisal: u mnie dziala. Drzwi twierdza inaczej.");
     Console.WriteLine("Masz " + MAKS_ENERGIA + " energii. Wpisz pomoc. Koniec zamyka program.");
@@ -135,6 +147,7 @@ void ZakonczTure()
 void Status()
 {
     Console.WriteLine("Pokoj: " + pokoj);
+    Console.WriteLine("Odkryte pokoje: "+ IloscOdkrytych(odwiedzonePokoje));
     Console.WriteLine("Ilosc krokow: " + movesCounter);
     Console.WriteLine("Energia: " + EnergiaPasek());
     Console.WriteLine(listaPostepu());
@@ -255,6 +268,7 @@ void Idz(string kierunek)
     }
     // TODO B4: zatwierdz pokoj, wywolaj Rozejrzyj i raz ZakonczTure.
     pokoj = nastepnyPokoj;
+    odwiedzonePokoje[pokoj-1] = true;
     movesCounter+=1;
     Rozejrzyj();
     ZakonczTure();
