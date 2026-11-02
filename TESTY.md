@@ -43,3 +43,23 @@ karta > prawo > bezpiecznik > prawo > napraw > prawo > wyjdz
 - Oczekiwane: monit: 
 - Rzeczywiste:
 - Poprawka i ponowna próba:
+
+
+# Próby odbiorowe R2
+
+Każdą próbę zaczynamy od `start`. Komendy wpisujemy osobno, każdą zatwierdzając Enterem.
+
+| ID | Próba i komendy po `start` | Oczekiwane | Otrzymane / osoba |
+|---|---|---|---|
+| T2.1 | `start`, `odkrycia`, `mapa`, `status` | Odkryty tylko pokój 1; 1/4; energia 10; jeden znacznik bieżącej pozycji. | OK |
+| T2.2 | `start`, `prawo`, `lewo`, `prawo`, `odkrycia`, `status` | Odkryte pokoje 1 i 2; 2/4; pokój 2; energia 7. Powroty nie zwiększają liczby różnych pokoi. | OK |
+| T2.3 | `start`, `prawo`, `prawo`, `prawo`, `odkrycia` | 4/4; energia 7. Nazwy i znaczniki zgadzają się z pozycją. | OK |
+| T2.4 | `start`, `lewo`, `gora`, pusty Enter, `odkrycia` | 1/4; pokój 1; energia 10. | OK |
+| T2.5 | `start`, `prawo`, `odkrycia`, `mapa`, `opis`, `status`, `odkrycia` | Nadal 2/4 i energia 9; żadna informacja nie odkrywa nowego pokoju. | OK |
+| T2.6 | Po T2.3: `start`, `odkrycia` | Ponownie tylko pokój 1; energia 10. | OK |
+| T2.7 | `start`; pięć razy para `prawo`, `lewo`; `prawo`, `odkrycia`, `status` | Przegrana; pokój 1; energia 0; 2/4. Ruch po końcu nie działa, odczyt działa. | OK |
+| T2.8 | `start`, `karta`, `prawo`, `bezpiecznik`, `prawo`, `napraw`, `prawo`, `wyjdz`, `odkrycia` | Wygrana; energia 3; 4/4; `odkrycia` nie zmieniają wyniku. | OK |
+| T2.9 | Osobny test funkcji: nazwy dla 0 i 5; zliczenie pustej `bool[]` | Nieznane pomieszczenie dla obu numerów; wynik zliczenia 0; bez odwołania poza tablicę. | OK |
+| T2.10 | `  ODKRYCIA  ` ze skrajnymi spacjami | Ten sam odczyt co `odkrycia`; energia 10. | OK |
+
+Wykonać również całe dotychczasowe próby z sekcji „Próby odbiorowe”.
