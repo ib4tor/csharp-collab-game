@@ -29,6 +29,7 @@ Każdą próbę zaczynamy od start. Po sekwencji wpisujemy status. Komendy z tab
 | 21 | prawo, opis | Jestes w: Magazyn, Poprzedni pokój: Recepcja, Następny pokój: Serwerownia, Możliwe kierunki: prawo, lewo | OK |
 | 22 | opis | Jestes w: Recepcja, Następny pokój: Magazyn, Możliwy kierunek: prawo | OK |
 | 23 | opis | Jestes w: Recepcja | OK |
+| 24 | prawo, lewo, mapa | dwa odkryte `[*]` i dwa nie odkryte `[ ]` | OK |
 
 
 
