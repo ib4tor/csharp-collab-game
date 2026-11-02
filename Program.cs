@@ -11,6 +11,7 @@ bool koniec = false;
 bool wygrana = false;
 int movesCounter = 0;
 bool[] odwiedzonePokoje = {false,false,false,false};
+string[] pokoje = ["Recepcja", "Magazyn", "Serwerownia"];
 
 string OcenaEnergii(int wartosc)
 {
@@ -158,23 +159,13 @@ void Status()
     Console.WriteLine("Wygrana: " + wygrana);
 }
 
-// SEKCJA A: INFORMACJE I MAPA. Wlasciciel: osoba A.
 string NazwaPokoju(int numer)
 {
-    if(numer == 1)
+    if(numer < 1 || numer > pokoje.Length)
     {
-        return "Recepcja";
-    }else if(numer == 2)
-    {
-        return "Magazyn";
-    }else if(numer == 3)
-    {
-        return "Serwerownia";
-    }else if(numer == 4)
-    {
-        return "Wyjście";
+        return "Pokoj " + numer;
     }
-    return "Pokoj " + numer;
+    return pokoje[numer-1];
 }
 
 void Pomoc()
