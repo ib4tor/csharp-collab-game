@@ -54,6 +54,16 @@ string EnergiaPasek()
     return bar+"]";
 }
 
+void PokazOdkrycia(){
+    for(int i = 0; i < 4; i++){
+        if(odwiedzonePokoje[i]){
+            Console.WriteLine($"{i+1} {pokoje[i]}");
+        }
+    }
+    Console.WriteLine($"Odkryte: {IloscOdkrytych(odwiedzonePokoje)}"); 
+}
+
+
 string listaPostepu()
 {
     char marker = '*';
@@ -104,6 +114,7 @@ while (true)
         case "bezpiecznik": Akcja("bezpiecznik"); break;
         case "napraw": Akcja("napraw"); break;
         case "wyjdz": Akcja("wyjdz"); break;
+        case "odkrycia": PokazOdkrycia(); break;
         default: Console.WriteLine("Nieznane polecenie. Wpisz pomoc."); break;
     }
 }
@@ -188,6 +199,7 @@ void Pomoc()
         Console.WriteLine("status       - dane rozgrywki");
         Console.WriteLine("mapa         - cztery pokoje i jeden znacznik");
         Console.WriteLine("opis         - rozejrzenie się w aktualnym pokoju");
+        Console.WriteLine("odkrycia     - odkryte pomieszczenia");
     } else if(dPomoc == "4") {
         Console.WriteLine("start        - nowa gra");
         Console.WriteLine("koniec       - zamknięcie programu (wyjście z gry)");
