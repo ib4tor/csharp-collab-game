@@ -11,7 +11,7 @@ bool koniec = false;
 bool wygrana = false;
 int movesCounter = 0;
 bool[] odwiedzonePokoje = {false,false,false,false};
-string[] pokoje = ["Recepcja", "Magazyn", "Serwerownia"];
+string[] pokoje = ["Recepcja", "Magazyn", "Serwerownia", "Wyjscie"];
 
 string OcenaEnergii(int wartosc)
 {
@@ -201,10 +201,12 @@ void Mapa()
     for(int i=1; i <= 4; i++)
     {
         string space = "";
-        for(int s=0; s<=i-1; s++){ space += "   "; }
+        for(int s=0; s<=i-1; s++){ space += "  "; }
         string marker = "";
         if(pokoj == i){marker = "<-- jesteś tutaj";}
-        Console.WriteLine(space + "| " + NazwaPokoju(i) + " " + marker);
+        string visitedMarker = "[ ]";
+        if(odwiedzonePokoje[i-1]){ visitedMarker = "[*]";}
+        Console.WriteLine(space + " " + visitedMarker + " " + NazwaPokoju(i) + " " + marker);
     }
 }
 
