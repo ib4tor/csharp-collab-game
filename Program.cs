@@ -31,13 +31,13 @@ string OcenaEnergii(int wartosc)
     }
 }
 
-int IloscOdkrytych(bool[] tablica)
+string IloscOdkrytych(bool[] tablica)
 {
     int zliczone = 0;
     for(int i = 0; i < tablica.Length; i++) {
         if (tablica[i]) zliczone++;
     }
-    return zliczone;
+    return zliczone + "/4";
 }
 
 string EnergiaPasek()
@@ -60,10 +60,10 @@ void PokazOdkrycia(){
             Console.WriteLine($"{i+1} {pokoje[i]}");
         }
     }
-    Console.WriteLine($"Odkryte: {IloscOdkrytych(odwiedzonePokoje)}/4");
-    if(IloscOdkrytych(odwiedzonePokoje) == 2){
+    Console.WriteLine($"Odkryte: {IloscOdkrytych(odwiedzonePokoje)}");
+    if(IloscOdkrytych(odwiedzonePokoje) == "2/4"){
         Console.WriteLine("Odkryto połowę mapy.");
-    }else if(IloscOdkrytych(odwiedzonePokoje) == 4){
+    }else if(IloscOdkrytych(odwiedzonePokoje) == "4/4"){
         Console.WriteLine("Odkryto całą mapę.");
     }
 }
