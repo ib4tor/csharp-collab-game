@@ -135,6 +135,7 @@ void Start()
     Console.WriteLine("Administrator napisal: u mnie dziala. Drzwi twierdza inaczej.");
     Console.WriteLine("Masz " + MAKS_ENERGIA + " energii. Wpisz pomoc. Koniec zamyka program.");
     Rozejrzyj();
+    Console.WriteLine("Odkryto nowy pokój!!! Witaj w " + pokoje[pokoj-1]);
 }
 
 void ZakonczTure()
@@ -282,6 +283,21 @@ void Idz(string kierunek)
     }
     // TODO B4: zatwierdz pokoj, wywolaj Rozejrzyj i raz ZakonczTure.
     pokoj = nastepnyPokoj;
+    if(odwiedzonePokoje[pokoj-1] == false)
+    {
+        if (IloscOdkrytych(odwiedzonePokoje) == "1/4")
+        {
+            Console.WriteLine("To już Twój drugi odkryty pokój. Robisz postępy!");
+        }
+        else if (IloscOdkrytych(odwiedzonePokoje) == "2/4")
+        {
+            Console.WriteLine("Masz już 3 odkryte pokoje. Został ostatni!");
+        }
+        else if (IloscOdkrytych(odwiedzonePokoje) == "3/4")
+        {
+            Console.WriteLine("Gratulacje! Znasz już całą mapę.");
+        }
+    }
     odwiedzonePokoje[pokoj-1] = true;
     movesCounter+=1;
     Rozejrzyj();
