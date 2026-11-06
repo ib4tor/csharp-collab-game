@@ -31,13 +31,13 @@ string OcenaEnergii(int wartosc)
     }
 }
 
-string IloscOdkrytych(bool[] tablica)
+int IloscOdkrytych(bool[] tablica)
 {
     int zliczone = 0;
     for(int i = 0; i < tablica.Length; i++) {
         if (tablica[i]) zliczone++;
     }
-    return zliczone + "/4";
+    return zliczone;
 }
 
 string EnergiaPasek()
@@ -60,7 +60,12 @@ void PokazOdkrycia(){
             Console.WriteLine($"{i+1} {pokoje[i]}");
         }
     }
-    Console.WriteLine($"Odkryte: {IloscOdkrytych(odwiedzonePokoje)}"); 
+    Console.WriteLine($"Odkryte: {IloscOdkrytych(odwiedzonePokoje)}/4");
+    if(IloscOdkrytych(odwiedzonePokoje) == 2){
+        Console.WriteLine("Odkryto połowę mapy.");
+    }else if(IloscOdkrytych(odwiedzonePokoje) == 4){
+        Console.WriteLine("Odkryto całą mapę.");
+    }
 }
 
 
@@ -210,6 +215,7 @@ void Pomoc()
 
 void Mapa()
 {
+    Console.WriteLine("-------- M A P A --------");
     for(int i=1; i <= 4; i++)
     {
         string space = "";
@@ -220,6 +226,7 @@ void Mapa()
         if(odwiedzonePokoje[i-1]){ visitedMarker = "[*]";}
         Console.WriteLine(space + " " + visitedMarker + " " + NazwaPokoju(i) + " " + marker);
     }
+    Console.WriteLine($"\n----- L E G E N D A -----\n[ ] - nieodkryty pokój\n[*] - odkryty pokój\n<-- - aktualna lokalizacja");
 }
 
 void Rozejrzyj()
