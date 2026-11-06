@@ -65,19 +65,26 @@ void PokazOdkrycia(){
 
 string progresPasek()
 {
+    int count = 0;
     if(wygrana){
-        return "####";
+        count ++;
     }
-    if(zasilanie && karta){
-       return "###_";
+    if(zasilanie){
+       count += 2;
     }
-    if (bezpiecznik && karta){
-        return "##__";
+    if (bezpiecznik){
+        count ++;
     }
     if (karta){
-        return "#___";
+        count ++;
     }
-    return "____";
+    string bar = "progres: ";
+    for(int i = 0; i < count; i++)
+    {
+        bar += "#";
+    }
+
+    return bar;
 }
 
 string listaPostepu()
