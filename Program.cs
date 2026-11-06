@@ -63,6 +63,22 @@ void PokazOdkrycia(){
     Console.WriteLine($"Odkryte: {IloscOdkrytych(odwiedzonePokoje)}"); 
 }
 
+string progresPasek()
+{
+    if(wygrana){
+        return "####";
+    }
+    if(zasilanie && karta){
+       return "###_";
+    }
+    if (bezpiecznik && karta){
+        return "##__";
+    }
+    if (karta){
+        return "#___";
+    }
+    return "____";
+}
 
 string listaPostepu()
 {
@@ -72,7 +88,7 @@ string listaPostepu()
     if(!bezpiecznik && zasilanie) bezpiecznikMarker = marker;
     char zasilanieMarker = zasilanie ? marker : ' ';
     char wygranaMarker = wygrana ? marker : ' ';
-    
+
     return $"[{kartaMarker}] znaleziono kartę\n[{bezpiecznikMarker}] znaleziono bezpiecznik\n[{zasilanieMarker}] przywrócono zasilanie\n[{wygranaMarker}] Wygrana!";
 }
 
@@ -162,6 +178,7 @@ void Status()
     Console.WriteLine("Ilosc krokow: " + movesCounter);
     Console.WriteLine("Energia: " + EnergiaPasek());
     Console.WriteLine(listaPostepu());
+    Console.WriteLine("[" + progresPasek() + "]");
     Console.WriteLine("Energia: " + EnergiaPasek() + " - " + OcenaEnergii(energia));
     Console.WriteLine("Karta: " + karta);
     Console.WriteLine("Bezpiecznik: " + bezpiecznik);
