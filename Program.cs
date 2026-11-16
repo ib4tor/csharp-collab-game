@@ -60,9 +60,37 @@ void PokazOdkrycia(){
             Console.WriteLine($"{i+1} {pokoje[i]}");
         }
     }
-    Console.WriteLine($"Odkryte: {IloscOdkrytych(odwiedzonePokoje)}"); 
+    Console.WriteLine($"Odkryte: {IloscOdkrytych(odwiedzonePokoje)}");
+    if(IloscOdkrytych(odwiedzonePokoje) == "2/4"){
+        Console.WriteLine("Odkryto połowę mapy.");
+    }else if(IloscOdkrytych(odwiedzonePokoje) == "4/4"){
+        Console.WriteLine("Odkryto całą mapę.");
+    }
 }
 
+string progresPasek()
+{
+    int count = 0;
+    if(wygrana){
+        count ++;
+    }
+    if(zasilanie){
+       count += 2;
+    }
+    if (bezpiecznik){
+        count ++;
+    }
+    if (karta){
+        count ++;
+    }
+    string bar = "progres: ";
+    for(int i = 0; i < count; i++)
+    {
+        bar += "#";
+    }
+
+    return bar;
+}
 
 string listaPostepu()
 {
@@ -72,7 +100,7 @@ string listaPostepu()
     if(!bezpiecznik && zasilanie) bezpiecznikMarker = marker;
     char zasilanieMarker = zasilanie ? marker : ' ';
     char wygranaMarker = wygrana ? marker : ' ';
-    
+
     return $"[{kartaMarker}] znaleziono kartę\n[{bezpiecznikMarker}] znaleziono bezpiecznik\n[{zasilanieMarker}] przywrócono zasilanie\n[{wygranaMarker}] Wygrana!";
 }
 
@@ -135,6 +163,7 @@ void Start()
     Console.WriteLine("Administrator napisal: u mnie dziala. Drzwi twierdza inaczej.");
     Console.WriteLine("Masz " + MAKS_ENERGIA + " energii. Wpisz pomoc. Koniec zamyka program.");
     Rozejrzyj();
+    Console.WriteLine("Odkryto nowy pokój!!! Witaj w " + pokoje[pokoj-1]);
 }
 
 void ZakonczTure()
@@ -162,6 +191,7 @@ void Status()
     Console.WriteLine("Ilosc krokow: " + movesCounter);
     Console.WriteLine("Energia: " + EnergiaPasek());
     Console.WriteLine(listaPostepu());
+    Console.WriteLine(progresPasek());
     Console.WriteLine("Energia: " + EnergiaPasek() + " - " + OcenaEnergii(energia));
     Console.WriteLine("Karta: " + karta);
     Console.WriteLine("Bezpiecznik: " + bezpiecznik);
@@ -210,6 +240,7 @@ void Pomoc()
 
 void Mapa()
 {
+    Console.WriteLine("-------- M A P A --------");
     for(int i=1; i <= 4; i++)
     {
         string space = "";
@@ -220,6 +251,7 @@ void Mapa()
         if(odwiedzonePokoje[i-1]){ visitedMarker = "[*]";}
         Console.WriteLine(space + " " + visitedMarker + " " + NazwaPokoju(i) + " " + marker);
     }
+    Console.WriteLine($"\n----- L E G E N D A -----\n[ ] - nieodkryty pokój\n[*] - odkryty pokój\n<-- - aktualna lokalizacja");
 }
 
 void Rozejrzyj()
@@ -282,6 +314,21 @@ void Idz(string kierunek)
     }
     // TODO B4: zatwierdz pokoj, wywolaj Rozejrzyj i raz ZakonczTure.
     pokoj = nastepnyPokoj;
+    if(odwiedzonePokoje[pokoj-1] == false)
+    {
+        if (IloscOdkrytych(odwiedzonePokoje) == "1/4")
+        {
+            Console.WriteLine("To już Twój drugi odkryty pokój. Robisz postępy!");
+        }
+        else if (IloscOdkrytych(odwiedzonePokoje) == "2/4")
+        {
+            Console.WriteLine("Masz już 3 odkryte pokoje. Został ostatni!");
+        }
+        else if (IloscOdkrytych(odwiedzonePokoje) == "3/4")
+        {
+            Console.WriteLine("Gratulacje! Znasz już całą mapę.");
+        }
+    }
     odwiedzonePokoje[pokoj-1] = true;
     movesCounter+=1;
     Rozejrzyj();
