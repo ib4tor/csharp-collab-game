@@ -39,6 +39,9 @@
 
         void Odwiedz(int numer)
         {
+            if(numer < 1 || numer > 4){
+                return;
+            }
             if(odwiedzonePokoje[numer-1] == false)
             {
                 odwiedzonePokoje[numer-1] = true;
@@ -46,24 +49,53 @@
             return;
         }
 
-        bool czyOdwiedzono(int numer)
+        bool CzyOdwiedzono(int numer)
         {
-            if(odwiedzonePokoje[numer-1]<0 || odwiedzonePokoje[numer - 1] > 3)
+            if(numer < 1 || numer > 4)
             {
                 Console.WriteLine("False");
+                return false;
             } else
             {
                 Console.WriteLine(odwiedzonePokoje[numer-1]);
+                return true;
             }
         }
 
-        void dodajWpis(string? tresc)
+        void DodajWpis(string? tresc)
         {
-            
+            if(tresc == null || tresc == "" || tresc.Trim() == "")
+            {
+                return;
+            }
+            tresc = tresc.Trim();
+            if(historiaWpisow[0] == "")
+            {
+                historiaWpisow[0] = tresc;
+                return;
+            }
+            if(historiaWpisow[1] == "")
+            {
+                historiaWpisow[1] = tresc;
+                return;
+            }
+            if(historiaWpisow[2] == "")
+            {
+                historiaWpisow[2] = tresc;
+                return;
+            }
+            historiaWpisow[0] = historiaWpisow[1];
+            historiaWpisow[1] = historiaWpisow[2];
+            historiaWpisow[2] = tresc;
+            return;
         }
 
-        string pobierzWpis(int indeks)
+        string PobierzWpis(int indeks)
         {
-            
+            if(indeks < 0 || indeks > liczbaWpisow - 1)
+            {
+                return "";
+            }
+            return historiaWpisow[indeks];
         }
     }
