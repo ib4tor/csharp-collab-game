@@ -58,7 +58,7 @@
             } else
             {
                 Console.WriteLine(odwiedzonePokoje[numer-1]);
-                return true;
+                return odwiedzonePokoje[numer-1];
             }
         }
 
@@ -72,21 +72,25 @@
             if(historiaWpisow[0] == "")
             {
                 historiaWpisow[0] = tresc;
+                liczbaWpisow++;
                 return;
             }
             if(historiaWpisow[1] == "")
             {
                 historiaWpisow[1] = tresc;
+                liczbaWpisow++;
                 return;
             }
             if(historiaWpisow[2] == "")
             {
                 historiaWpisow[2] = tresc;
+                liczbaWpisow++;
                 return;
             }
             historiaWpisow[0] = historiaWpisow[1];
             historiaWpisow[1] = historiaWpisow[2];
             historiaWpisow[2] = tresc;
+            liczbaWpisow = 3;
             return;
         }
 
