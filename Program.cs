@@ -1,5 +1,4 @@
 using System;
-
 // WSPOLNY KONTRAKT. Wszystkie dane inicjalizujemy przed Start().
 const int MAKS_ENERGIA = 10;
 int pokoj = 1;
@@ -111,7 +110,7 @@ void dziennik(){
     if(dziennikWypraw.LiczbaWpisow == 0){
         Console.WriteLine("Historia jest pusta. Brak wpisów.");
     }else{
-        for(int i = 0; i++; i < 3){
+        for(int i = 0; i < 3; i++){
             if(dziennikWypraw.LiczbaWpisow >= i + 1){
                 Console.WriteLine(dziennikWypraw.PobierzWpis(i));
             }
@@ -302,6 +301,7 @@ void Rozejrzyj()
     {
         Console.WriteLine("przypomnij kartę i prąd");
     }
+    dziennik();
 }
 
 // SEKCJA B: RUCH. Wlasciciel: osoba B.

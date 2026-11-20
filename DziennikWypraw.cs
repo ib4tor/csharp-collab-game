@@ -1,10 +1,11 @@
-    public class DziennikWyprawy
+using System;
+    public class DziennikWypraw
     {
         private bool[] odwiedzonePokoje = { true, false, false, false };
         private string[] historiaWpisow = new string[3] { "", "", "" };
         private int liczbaWpisow = 0;
 
-        public DziennikWyprawy()
+        public DziennikWypraw()
         {
             Reset();
         }
@@ -62,7 +63,7 @@
             }
         }
 
-        void DodajWpis(string? tresc)
+        public void DodajWpis(string? tresc)
         {
             if(tresc == null || tresc == "" || tresc.Trim() == "")
             {
@@ -94,7 +95,7 @@
             return;
         }
 
-        string PobierzWpis(int indeks)
+        public string PobierzWpis(int indeks)
         {
             if(indeks < 0 || indeks > liczbaWpisow - 1)
             {
