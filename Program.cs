@@ -1,5 +1,4 @@
 using System;
-
 // WSPOLNY KONTRAKT. Wszystkie dane inicjalizujemy przed Start().
 const int MAKS_ENERGIA = 10;
 int pokoj = 1;
@@ -12,6 +11,8 @@ bool wygrana = false;
 int movesCounter = 0;
 bool[] odwiedzonePokoje = {false,false,false,false};
 string[] pokoje = ["Recepcja", "Magazyn", "Serwerownia", "Wyjscie"];
+
+DziennikWypraw dziennikWypraw = new DziennikWypraw();
 
 string OcenaEnergii(int wartosc)
 {
@@ -102,6 +103,19 @@ string listaPostepu()
     char wygranaMarker = wygrana ? marker : ' ';
 
     return $"[{kartaMarker}] znaleziono kartę\n[{bezpiecznikMarker}] znaleziono bezpiecznik\n[{zasilanieMarker}] przywrócono zasilanie\n[{wygranaMarker}] Wygrana!";
+}
+
+void dziennik(){
+    // wypisz 3 ostatnie wpisy
+    if(dziennikWypraw.LiczbaWpisow == 0){
+        Console.WriteLine("Historia jest pusta. Brak wpisów.");
+    }else{
+        for(int i = 0; i < 3; i++){
+            if(dziennikWypraw.LiczbaWpisow >= i + 1){
+                Console.WriteLine(dziennikWypraw.PobierzWpis(i));
+            }
+        }
+    }
 }
 
 // SEKCJA 0: GOTOWY SILNIK NAUCZYCIELA. Nie zmieniaj w zadaniu podstawowym.
@@ -287,6 +301,7 @@ void Rozejrzyj()
     {
         Console.WriteLine("przypomnij kartę i prąd");
     }
+    dziennik();
 }
 
 // SEKCJA B: RUCH. Wlasciciel: osoba B.
@@ -331,6 +346,7 @@ void Idz(string kierunek)
     }
     odwiedzonePokoje[pokoj-1] = true;
     movesCounter+=1;
+    dziennikWypraw.DodajWpis($"Wykonano ruch w {kierunek}");
     Rozejrzyj();
     ZakonczTure();
 }
@@ -343,6 +359,7 @@ void Akcja(string co)
             karta = true;
             Console.WriteLine("Zbierasz karte.");
             movesCounter+=1;
+            dziennikWypraw.DodajWpis($"Zebrano przedmiot {co}");
             ZakonczTure();
         }else if(pokoj != 1){
             Console.WriteLine("Tutaj nie ma karty do zebrania.");
@@ -356,6 +373,7 @@ void Akcja(string co)
             bezpiecznik = true;
             Console.WriteLine("Zbierasz bezpiecznik.");
             movesCounter+=1;
+            dziennikWypraw.DodajWpis($"Zebrano przedmiot {co}");
             ZakonczTure();
         }else if(pokoj != 2){
             Console.WriteLine("Tutaj nie ma bezpiecznika do zebrania.");
@@ -372,6 +390,7 @@ void Akcja(string co)
             bezpiecznik = false;
             movesCounter+=1;
             Console.WriteLine("Naprawiasz skrzynke z bezpiecznikami. Przywrocono zasilanie.");
+            dziennikWypraw.DodajWpis($"Naprawiono skrzynkę z bezpiecznikami");
             ZakonczTure();
         }else if(pokoj != 3){
             Console.WriteLine("Tutaj nie ma skrzynki z bezpiecznikami.");
@@ -387,6 +406,7 @@ void Akcja(string co)
             wygrana = true;
             koniec = true;
             movesCounter+=1;
+            dziennikWypraw.DodajWpis($"Gracz wyszedł z serwerowni");
             ZakonczTure();
         }else if(pokoj != 4){
             Console.WriteLine("Tutaj nie ma wyjscia.");
