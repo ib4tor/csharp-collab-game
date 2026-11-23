@@ -93,7 +93,7 @@ string listaPostepu() {
     return $"[{kartaMarker}] znaleziono kartę\n[{bezpiecznikMarker}] znaleziono bezpiecznik\n[{zasilanieMarker}] przywrócono zasilanie\n[{wygranaMarker}] Wygrana!";
 }
 
-void dziennik() {
+void Dziennik() {
     // wypisz 3 ostatnie wpisy
     if (dziennikWypraw.LiczbaWpisow == 0) {
         Console.WriteLine("Historia jest pusta. Brak wpisów.");
@@ -106,7 +106,6 @@ void dziennik() {
     }
 }
 
-// SEKCJA 0: GOTOWY SILNIK NAUCZYCIELA. Nie zmieniaj w zadaniu podstawowym.
 Start();
 while (true) {
     Console.Write("> ");
@@ -126,7 +125,6 @@ while (true) {
         continue;
     }
 
-    // Rozdzielacz dziala od poczatku, zeby zespoly mogly testowac niezaleznie.
     switch (polecenie) {
         case "start": Start(); break;
         case "pomoc": Pomoc(); break;
@@ -140,6 +138,7 @@ while (true) {
         case "napraw": Akcja("napraw"); break;
         case "wyjdz": Akcja("wyjdz"); break;
         case "odkrycia": PokazOdkrycia(); break;
+        case "dziennik": Dziennik(); break;
         default: Console.WriteLine("Nieznane polecenie. Wpisz pomoc."); break;
     }
 }
@@ -175,7 +174,6 @@ void ZakonczTure() {
     }
 }
 
-// Status jest gotowy: sluzy do testow, zanim autor mapy skonczy swoja sekcje.
 void Status() {
     Console.WriteLine("Pokoj: " + pokoj);
     Console.WriteLine("Odkryte pokoje: " + IloscOdkrytych(odwiedzonePokoje));
@@ -268,17 +266,14 @@ void Rozejrzyj() {
     } else if (pokoj == 4) {
         Console.WriteLine("przypomnij kartę i prąd");
     }
-    dziennik();
+    Dziennik();
 }
 
-// SEKCJA B: RUCH. Wlasciciel: osoba B.
 void Idz(string kierunek) {
-    // TODO B1: odrzuc ruch po zakonczeniu gry (return).
     if (koniec) {
         Console.WriteLine("Koniec gry");
         return;
     }
-    // TODO B2: policz nastepnyPokoj, nie zmieniaj jeszcze wspolnego pokoj.
     int nastepnyPokoj = pokoj;
     if (kierunek == "prawo") {
         nastepnyPokoj += 1;
@@ -288,12 +283,10 @@ void Idz(string kierunek) {
         Console.WriteLine("Nieznany kierunek, stoisz w miejscu");
         return;
     }
-    // TODO B3: odrzuc nieznany kierunek i ruch poza pokoje 1..4.
     if (kierunek == "góra" || kierunek == "dół" || nastepnyPokoj == 5 && kierunek == "prawo" || nastepnyPokoj == 0 && kierunek == "lewo") {
         Console.WriteLine("Udzerzyłeś w ściane!!! Energia nie zostala zabrana.");
         return;
     }
-    // TODO B4: zatwierdz pokoj, wywolaj Rozejrzyj i raz ZakonczTure.
     pokoj = nastepnyPokoj;
     if (odwiedzonePokoje[pokoj - 1] == false) {
         if (IloscOdkrytych(odwiedzonePokoje) == "1/4") {
@@ -311,7 +304,6 @@ void Idz(string kierunek) {
     ZakonczTure();
 }
 
-// SEKCJA C: PRZEDMIOTY I WYGRANA. Wlasciciel: osoba C.
 void Akcja(string co) {
     if (co == "karta") {
         if (pokoj == 1 && karta == false) {
