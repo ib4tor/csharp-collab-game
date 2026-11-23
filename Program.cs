@@ -154,6 +154,7 @@ void Start() {
     wygrana = false;
     odwiedzonePokoje = new bool[] { false, false, false, false };
     odwiedzonePokoje[0] = true;
+    dziennikWypraw.Reset();
     Console.WriteLine("UCIECZKA Z SERWEROWNI: PIATEK, 16:59.");
     Console.WriteLine("Administrator napisal: u mnie dziala. Drzwi twierdza inaczej.");
     Console.WriteLine("Masz " + MAKS_ENERGIA + " energii. Wpisz pomoc. Koniec zamyka program.");
