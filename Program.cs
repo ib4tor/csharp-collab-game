@@ -38,9 +38,9 @@ string EnergiaPasek() {
 }
 
 void PokazOdkrycia() {
-    for (int i = 0; i < 4; i++) {
+    for (int i = 1; i <= 4; i++) {
         if (dziennikWypraw.CzyOdwiedzono(i)) {
-            Console.WriteLine($"{i + 1} {pokoje[i]}");
+            Console.WriteLine($"{i} {pokoje[i - 1]}");
         }
     }
     Console.WriteLine($"Odkryte: {dziennikWypraw.IloscOdkrytych()}");
