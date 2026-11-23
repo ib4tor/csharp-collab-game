@@ -1,0 +1,11 @@
+# Top-level EditorConfig root indicator
+root = true
+
+[*.cs]
+# Set to 'none' to put opening curly braces on the same line for all constructs
+csharp_new_line_before_open_brace = none
+
+# Keep keywords like else, catch, and finally on the same line as closing braces
+csharp_new_line_before_else = false
+csharp_new_line_before_catch = false
+csharp_new_line_before_finally = false
