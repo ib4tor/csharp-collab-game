@@ -92,13 +92,13 @@ void Dziennik(bool sort) {
         if(sort){
             for (int i = 3; i >= 0; i--) {
                 if (dziennikWypraw.LiczbaWpisow >= i + 1) {
-                    Console.WriteLine(dziennikWypraw.PobierzWpis(i));
+                    Console.WriteLine($"{dziennikWypraw.PobierzWpis(i)}");
                 }
             }
         }else{
             for (int i = 0; i < 3; i++) {
                 if (dziennikWypraw.LiczbaWpisow >= i + 1) {
-                    Console.WriteLine(dziennikWypraw.PobierzWpis(i));
+                    Console.WriteLine($"{i+1}. {dziennikWypraw.PobierzWpis(i)}");
                 }
             }
         }
