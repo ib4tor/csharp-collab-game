@@ -9,7 +9,6 @@ bool zasilanie = false;
 bool koniec = false;
 bool wygrana = false;
 int movesCounter = 0;
-bool[] odwiedzonePokoje = { false, false, false, false };
 string[] pokoje = ["Recepcja", "Magazyn", "Serwerownia", "Wyjscie"];
 
 DziennikWypraw dziennikWypraw = new DziennikWypraw();
@@ -144,8 +143,6 @@ void Start() {
     zasilanie = false;
     koniec = false;
     wygrana = false;
-    odwiedzonePokoje = new bool[] { false, false, false, false };
-    odwiedzonePokoje[0] = true;
     dziennikWypraw.Reset();
     Console.WriteLine("UCIECZKA Z SERWEROWNI: PIATEK, 16:59.");
     Console.WriteLine("Administrator napisal: u mnie dziala. Drzwi twierdza inaczej.");
@@ -281,17 +278,17 @@ void Idz(string kierunek) {
         return;
     }
     pokoj = nastepnyPokoj;
-    // TODO
-    /* if (odwiedzonePokoje[pokoj - 1] == false) {
-        if (IloscOdkrytych(odwiedzonePokoje) == "1/4") {
+
+    if (dziennikWypraw.CzyOdwiedzono(pokoj) == false) {
+        if (dziennikWypraw.IloscOdkrytych() == "1/4") {
             Console.WriteLine("To już Twój drugi odkryty pokój. Robisz postępy!");
-        } else if (IloscOdkrytych(odwiedzonePokoje) == "2/4") {
+        } else if (dziennikWypraw.IloscOdkrytych() == "2/4") {
             Console.WriteLine("Masz już 3 odkryte pokoje. Został ostatni!");
-        } else if (IloscOdkrytych(odwiedzonePokoje) == "3/4") {
+        } else if (dziennikWypraw.IloscOdkrytych() == "3/4") {
             Console.WriteLine("Gratulacje! Znasz już całą mapę.");
         }
     }
- */
+
     dziennikWypraw.Odwiedz(pokoj);
     movesCounter += 1;
     dziennikWypraw.DodajWpis($"Wykonano ruch w {kierunek}");
