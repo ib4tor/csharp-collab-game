@@ -30,7 +30,7 @@ public class DziennikWypraw {
         }
     }
 
-    void Odwiedz(int numer) {
+    public void Odwiedz(int numer) {
         if (numer < 1 || numer > 4) {
             return;
         }
@@ -40,12 +40,10 @@ public class DziennikWypraw {
         return;
     }
 
-    bool CzyOdwiedzono(int numer) {
+    public bool CzyOdwiedzono(int numer) {
         if (numer < 1 || numer > 4) {
-            Console.WriteLine("False");
             return false;
         } else {
-            Console.WriteLine(odwiedzonePokoje[numer - 1]);
             return odwiedzonePokoje[numer - 1];
         }
     }

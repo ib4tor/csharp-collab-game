@@ -233,7 +233,7 @@ void Mapa() {
         string marker = "";
         if (pokoj == i) { marker = "<-- jesteś tutaj"; }
         string visitedMarker = "[ ]";
-        if (odwiedzonePokoje[i - 1]) { visitedMarker = "[*]"; }
+        if (dziennikWypraw.CzyOdwiedzono(i)) { visitedMarker = "[*]"; }
         Console.WriteLine(space + " " + visitedMarker + " " + NazwaPokoju(i) + " " + marker);
     }
     Console.WriteLine($"\n----- L E G E N D A -----\n[ ] - nieodkryty pokój\n[*] - odkryty pokój\n<-- - aktualna lokalizacja");
@@ -289,7 +289,8 @@ void Idz(string kierunek) {
         return;
     }
     pokoj = nastepnyPokoj;
-    if (odwiedzonePokoje[pokoj - 1] == false) {
+    // TODO
+    /* if (odwiedzonePokoje[pokoj - 1] == false) {
         if (IloscOdkrytych(odwiedzonePokoje) == "1/4") {
             Console.WriteLine("To już Twój drugi odkryty pokój. Robisz postępy!");
         } else if (IloscOdkrytych(odwiedzonePokoje) == "2/4") {
@@ -297,12 +298,14 @@ void Idz(string kierunek) {
         } else if (IloscOdkrytych(odwiedzonePokoje) == "3/4") {
             Console.WriteLine("Gratulacje! Znasz już całą mapę.");
         }
-    }
-    odwiedzonePokoje[pokoj - 1] = true;
-    movesCounter += 1;
-    dziennikWypraw.DodajWpis($"Wykonano ruch w {kierunek}");
-    Rozejrzyj();
-    ZakonczTure();
+    */
+}
+
+dziennikWypraw.Odwiedz(pokoj);
+movesCounter += 1;
+dziennikWypraw.DodajWpis($"Wykonano ruch w {kierunek}");
+Rozejrzyj();
+ZakonczTure();
 }
 
 void Akcja(string co) {
