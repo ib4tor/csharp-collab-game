@@ -297,51 +297,55 @@ void Idz(string kierunek) {
 }
 
 void Akcja(string co) {
-    if (co == "karta") {
-        if (pokoj == 1 && karta == false) {
-            karta = true;
-            Console.WriteLine("Zbierasz karte.");
-            movesCounter += 1;
-            dziennikWypraw.DodajWpis($"Zebrano przedmiot {co}");
-            ZakonczTure();
-        } else if (pokoj != 1) {
-            Console.WriteLine("Tutaj nie ma karty do zebrania.");
-        } else if (karta == true) {
-            Console.WriteLine("Posiadasz juz karte.");
+    if (koniec == false) {
+        if (co == "karta") {
+            if (pokoj == 1 && karta == false) {
+                karta = true;
+                Console.WriteLine("Zbierasz karte.");
+                movesCounter += 1;
+                dziennikWypraw.DodajWpis($"Zebrano przedmiot {co}");
+                ZakonczTure();
+            } else if (pokoj != 1) {
+                Console.WriteLine("Tutaj nie ma karty do zebrania.");
+            } else if (karta == true) {
+                Console.WriteLine("Posiadasz juz karte.");
+            }
         }
-    }
 
-    if (co == "bezpiecznik") {
-        if (pokoj == 2 && bezpiecznik == false && zasilanie == false) {
-            bezpiecznik = true;
-            Console.WriteLine("Zbierasz bezpiecznik.");
-            movesCounter += 1;
-            dziennikWypraw.DodajWpis($"Zebrano przedmiot {co}");
-            ZakonczTure();
-        } else if (pokoj != 2) {
-            Console.WriteLine("Tutaj nie ma bezpiecznika do zebrania.");
-        } else if (zasilanie == true && pokoj == 2) {
-            Console.WriteLine("Zasilanie jest juz wlaczone.");
-        } else if (pokoj == 2 && bezpiecznik == true && zasilanie == false) {
-            Console.WriteLine("Posiadasz juz bezpiecznik.");
+        if (co == "bezpiecznik") {
+            if (pokoj == 2 && bezpiecznik == false && zasilanie == false) {
+                bezpiecznik = true;
+                Console.WriteLine("Zbierasz bezpiecznik.");
+                movesCounter += 1;
+                dziennikWypraw.DodajWpis($"Zebrano przedmiot {co}");
+                ZakonczTure();
+            } else if (pokoj != 2) {
+                Console.WriteLine("Tutaj nie ma bezpiecznika do zebrania.");
+            } else if (zasilanie == true && pokoj == 2) {
+                Console.WriteLine("Zasilanie jest juz wlaczone.");
+            } else if (pokoj == 2 && bezpiecznik == true && zasilanie == false) {
+                Console.WriteLine("Posiadasz juz bezpiecznik.");
+            }
         }
-    }
 
-    if (co == "napraw") {
-        if (pokoj == 3 && bezpiecznik == true && zasilanie == false) {
-            zasilanie = true;
-            bezpiecznik = false;
-            movesCounter += 1;
-            Console.WriteLine("Naprawiasz skrzynke z bezpiecznikami. Przywrocono zasilanie.");
-            dziennikWypraw.DodajWpis($"Naprawiono skrzynkę z bezpiecznikami");
-            ZakonczTure();
-        } else if (pokoj != 3) {
-            Console.WriteLine("Tutaj nie ma skrzynki z bezpiecznikami.");
-        } else if (zasilanie == true && pokoj == 3) {
-            Console.WriteLine("Zasilanie jest juz wlaczone.");
-        } else if (pokoj == 3) {
-            Console.WriteLine("Nie posiadasz bezpiecznika."); //tak
+        if (co == "napraw") {
+            if (pokoj == 3 && bezpiecznik == true && zasilanie == false) {
+                zasilanie = true;
+                bezpiecznik = false;
+                movesCounter += 1;
+                Console.WriteLine("Naprawiasz skrzynke z bezpiecznikami. Przywrocono zasilanie.");
+                dziennikWypraw.DodajWpis($"Naprawiono skrzynkę z bezpiecznikami");
+                ZakonczTure();
+            } else if (pokoj != 3) {
+                Console.WriteLine("Tutaj nie ma skrzynki z bezpiecznikami.");
+            } else if (zasilanie == true && pokoj == 3) {
+                Console.WriteLine("Zasilanie jest juz wlaczone.");
+            } else if (pokoj == 3) {
+                Console.WriteLine("Nie posiadasz bezpiecznika."); //tak
+            }
         }
+    } else {
+        Console.WriteLine("Brak energii.");
     }
 
     if (co == "wyjdz") {
