@@ -9,7 +9,6 @@ bool zasilanie = false;
 bool koniec = false;
 bool wygrana = false;
 int movesCounter = 0;
-bool[] odwiedzonePokoje = { false, false, false, false };
 string[] pokoje = ["Recepcja", "Magazyn", "Serwerownia", "Wyjscie"];
 
 DziennikWypraw dziennikWypraw = new DziennikWypraw();
@@ -27,14 +26,6 @@ string OcenaEnergii(int wartosc) {
     }
 }
 
-string IloscOdkrytych(bool[] tablica) {
-    int zliczone = 0;
-    for (int i = 0; i < tablica.Length; i++) {
-        if (tablica[i]) zliczone++;
-    }
-    return zliczone + "/4";
-}
-
 string EnergiaPasek() {
     string bar = "[";
     for (int i = 0; i < energia; i++) {
@@ -47,15 +38,15 @@ string EnergiaPasek() {
 }
 
 void PokazOdkrycia() {
-    for (int i = 0; i < 4; i++) {
-        if (odwiedzonePokoje[i]) {
-            Console.WriteLine($"{i + 1} {pokoje[i]}");
+    for (int i = 1; i <= 4; i++) {
+        if (dziennikWypraw.CzyOdwiedzono(i)) {
+            Console.WriteLine($"{i} {pokoje[i - 1]}");
         }
     }
-    Console.WriteLine($"Odkryte: {IloscOdkrytych(odwiedzonePokoje)}");
-    if (IloscOdkrytych(odwiedzonePokoje) == "2/4") {
+    Console.WriteLine($"Odkryte: {dziennikWypraw.IloscOdkrytych()}");
+    if (dziennikWypraw.IloscOdkrytych() == "2/4") {
         Console.WriteLine("Odkryto połowę mapy.");
-    } else if (IloscOdkrytych(odwiedzonePokoje) == "4/4") {
+    } else if (dziennikWypraw.IloscOdkrytych() == "4/4") {
         Console.WriteLine("Odkryto całą mapę.");
     }
 }
@@ -93,7 +84,7 @@ string listaPostepu() {
     return $"[{kartaMarker}] znaleziono kartę\n[{bezpiecznikMarker}] znaleziono bezpiecznik\n[{zasilanieMarker}] przywrócono zasilanie\n[{wygranaMarker}] Wygrana!";
 }
 
-void dziennik() {
+void Dziennik() {
     // wypisz 3 ostatnie wpisy
     if (dziennikWypraw.LiczbaWpisow == 0) {
         Console.WriteLine("Historia jest pusta. Brak wpisów.");
@@ -106,7 +97,6 @@ void dziennik() {
     }
 }
 
-// SEKCJA 0: GOTOWY SILNIK NAUCZYCIELA. Nie zmieniaj w zadaniu podstawowym.
 Start();
 while (true) {
     Console.Write("> ");
@@ -126,7 +116,6 @@ while (true) {
         continue;
     }
 
-    // Rozdzielacz dziala od poczatku, zeby zespoly mogly testowac niezaleznie.
     switch (polecenie) {
         case "start": Start(); break;
         case "pomoc": Pomoc(); break;
@@ -140,6 +129,7 @@ while (true) {
         case "napraw": Akcja("napraw"); break;
         case "wyjdz": Akcja("wyjdz"); break;
         case "odkrycia": PokazOdkrycia(); break;
+        case "dziennik": Dziennik(); break;
         default: Console.WriteLine("Nieznane polecenie. Wpisz pomoc."); break;
     }
 }
@@ -153,8 +143,7 @@ void Start() {
     zasilanie = false;
     koniec = false;
     wygrana = false;
-    odwiedzonePokoje = new bool[] { false, false, false, false };
-    odwiedzonePokoje[0] = true;
+    dziennikWypraw.Reset();
     Console.WriteLine("UCIECZKA Z SERWEROWNI: PIATEK, 16:59.");
     Console.WriteLine("Administrator napisal: u mnie dziala. Drzwi twierdza inaczej.");
     Console.WriteLine("Masz " + MAKS_ENERGIA + " energii. Wpisz pomoc. Koniec zamyka program.");
@@ -175,10 +164,9 @@ void ZakonczTure() {
     }
 }
 
-// Status jest gotowy: sluzy do testow, zanim autor mapy skonczy swoja sekcje.
 void Status() {
     Console.WriteLine("Pokoj: " + pokoj);
-    Console.WriteLine("Odkryte pokoje: " + IloscOdkrytych(odwiedzonePokoje));
+    Console.WriteLine("Odkryte pokoje: " + dziennikWypraw.IloscOdkrytych());
     Console.WriteLine("Ilosc krokow: " + movesCounter);
     Console.WriteLine("Energia: " + EnergiaPasek());
     Console.WriteLine(listaPostepu());
@@ -234,7 +222,7 @@ void Mapa() {
         string marker = "";
         if (pokoj == i) { marker = "<-- jesteś tutaj"; }
         string visitedMarker = "[ ]";
-        if (odwiedzonePokoje[i - 1]) { visitedMarker = "[*]"; }
+        if (dziennikWypraw.CzyOdwiedzono(i)) { visitedMarker = "[*]"; }
         Console.WriteLine(space + " " + visitedMarker + " " + NazwaPokoju(i) + " " + marker);
     }
     Console.WriteLine($"\n----- L E G E N D A -----\n[ ] - nieodkryty pokój\n[*] - odkryty pokój\n<-- - aktualna lokalizacja");
@@ -268,17 +256,14 @@ void Rozejrzyj() {
     } else if (pokoj == 4) {
         Console.WriteLine("przypomnij kartę i prąd");
     }
-    dziennik();
+    Dziennik();
 }
 
-// SEKCJA B: RUCH. Wlasciciel: osoba B.
 void Idz(string kierunek) {
-    // TODO B1: odrzuc ruch po zakonczeniu gry (return).
     if (koniec) {
         Console.WriteLine("Koniec gry");
         return;
     }
-    // TODO B2: policz nastepnyPokoj, nie zmieniaj jeszcze wspolnego pokoj.
     int nastepnyPokoj = pokoj;
     if (kierunek == "prawo") {
         nastepnyPokoj += 1;
@@ -288,30 +273,29 @@ void Idz(string kierunek) {
         Console.WriteLine("Nieznany kierunek, stoisz w miejscu");
         return;
     }
-    // TODO B3: odrzuc nieznany kierunek i ruch poza pokoje 1..4.
     if (kierunek == "góra" || kierunek == "dół" || nastepnyPokoj == 5 && kierunek == "prawo" || nastepnyPokoj == 0 && kierunek == "lewo") {
         Console.WriteLine("Udzerzyłeś w ściane!!! Energia nie zostala zabrana.");
         return;
     }
-    // TODO B4: zatwierdz pokoj, wywolaj Rozejrzyj i raz ZakonczTure.
     pokoj = nastepnyPokoj;
-    if (odwiedzonePokoje[pokoj - 1] == false) {
-        if (IloscOdkrytych(odwiedzonePokoje) == "1/4") {
+
+    if (dziennikWypraw.CzyOdwiedzono(pokoj) == false) {
+        if (dziennikWypraw.IloscOdkrytych() == "1/4") {
             Console.WriteLine("To już Twój drugi odkryty pokój. Robisz postępy!");
-        } else if (IloscOdkrytych(odwiedzonePokoje) == "2/4") {
+        } else if (dziennikWypraw.IloscOdkrytych() == "2/4") {
             Console.WriteLine("Masz już 3 odkryte pokoje. Został ostatni!");
-        } else if (IloscOdkrytych(odwiedzonePokoje) == "3/4") {
+        } else if (dziennikWypraw.IloscOdkrytych() == "3/4") {
             Console.WriteLine("Gratulacje! Znasz już całą mapę.");
         }
     }
-    odwiedzonePokoje[pokoj - 1] = true;
+
+    dziennikWypraw.Odwiedz(pokoj);
     movesCounter += 1;
     dziennikWypraw.DodajWpis($"Wykonano ruch w {kierunek}");
     Rozejrzyj();
     ZakonczTure();
 }
 
-// SEKCJA C: PRZEDMIOTY I WYGRANA. Wlasciciel: osoba C.
 void Akcja(string co) {
     if (co == "karta") {
         if (pokoj == 1 && karta == false) {

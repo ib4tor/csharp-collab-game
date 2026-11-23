@@ -30,7 +30,7 @@ public class DziennikWypraw {
         }
     }
 
-    void Odwiedz(int numer) {
+    public void Odwiedz(int numer) {
         if (numer < 1 || numer > 4) {
             return;
         }
@@ -40,14 +40,20 @@ public class DziennikWypraw {
         return;
     }
 
-    bool CzyOdwiedzono(int numer) {
+    public bool CzyOdwiedzono(int numer) {
         if (numer < 1 || numer > 4) {
-            Console.WriteLine("False");
             return false;
         } else {
-            Console.WriteLine(odwiedzonePokoje[numer - 1]);
             return odwiedzonePokoje[numer - 1];
         }
+    }
+
+    public string IloscOdkrytych() {
+        int zliczone = 0;
+        for (int i = 0; i < odwiedzonePokoje.Length; i++) {
+            if (odwiedzonePokoje[i]) zliczone++;
+        }
+        return zliczone + "/4";
     }
 
     public void DodajWpis(string? tresc) {
