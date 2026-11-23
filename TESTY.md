@@ -5,7 +5,7 @@ Każdą próbę zaczynamy od start. Po sekwencji wpisujemy status. Komendy z tab
 **tester: Igorroo**
 
 | Nr | Próba i komendy po start | Oczekiwane | Otrzymane / osoba |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | 1 | mapa, pomoc, opis, status | 4 pokoje, 1 znacznik przy recepcji; energia 10 | OK |
 | 2 | lewo, gora, pusty Enter | Pokój 1, energia 10 | OK |
 | 3 | prawo | Pokój 2, energia 9 | OK |
@@ -31,26 +31,24 @@ Każdą próbę zaczynamy od start. Po sekwencji wpisujemy status. Komendy z tab
 | 23 | opis | Jestes w: Recepcja | OK |
 | 24 | prawo, lewo, mapa | dwa odkryte `[*]` i dwa nie odkryte `[ ]` | OK |
 
-
-
 ## Nasza droga zwycięska
 
 karta > prawo > bezpiecznik > prawo > napraw > prawo > wyjdz
 
 ## Znaleziony błąd
-- Wersja/commit: 
-- Kroki od startu: 
-- Oczekiwane: monit: 
+
+- Wersja/commit:
+- Kroki od startu:
+- Oczekiwane: monit:
 - Rzeczywiste:
 - Poprawka i ponowna próba:
-
 
 # Próby odbiorowe R2
 
 Każdą próbę zaczynamy od `start`. Komendy wpisujemy osobno, każdą zatwierdzając Enterem.
 
 | ID | Próba i komendy po `start` | Oczekiwane | Otrzymane / osoba |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | T2.1 | `start`, `odkrycia`, `mapa`, `status` | Odkryty tylko pokój 1; 1/4; energia 10; jeden znacznik bieżącej pozycji. | OK |
 | T2.2 | `start`, `prawo`, `lewo`, `prawo`, `odkrycia`, `status` | Odkryte pokoje 1 i 2; 2/4; pokój 2; energia 7. Powroty nie zwiększają liczby różnych pokoi. | OK |
 | T2.3 | `start`, `prawo`, `prawo`, `prawo`, `odkrycia` | 4/4; energia 7. Nazwy i znaczniki zgadzają się z pozycją. | OK |
@@ -60,6 +58,19 @@ Każdą próbę zaczynamy od `start`. Komendy wpisujemy osobno, każdą zatwierd
 | T2.7 | `start`; pięć razy para `prawo`, `lewo`; `prawo`, `odkrycia`, `status` | Przegrana; pokój 1; energia 0; 2/4. Ruch po końcu nie działa, odczyt działa. | OK |
 | T2.8 | `start`, `karta`, `prawo`, `bezpiecznik`, `prawo`, `napraw`, `prawo`, `wyjdz`, `odkrycia` | Wygrana; energia 3; 4/4; `odkrycia` nie zmieniają wyniku. | OK |
 | T2.9 | Osobny test funkcji: nazwy dla 0 i 5; zliczenie pustej `bool[]` | Nieznane pomieszczenie dla obu numerów; wynik zliczenia 0; bez odwołania poza tablicę. | OK |
-| T2.10 | `  ODKRYCIA  ` ze skrajnymi spacjami | Ten sam odczyt co `odkrycia`; energia 10. | OK |
+| T2.10 | `ODKRYCIA` ze skrajnymi spacjami | Ten sam odczyt co `odkrycia`; energia 10. | OK |
 
-Wykonać również całe dotychczasowe próby z sekcji „Próby odbiorowe”.
+| ID | Próba | Oczekiwanie | Otrzymane |
+| --- | --- | --- | --- |
+| T3.1 | `start`, `dziennik`, `odkrycia`, `status` | Brak wpisów; 1/4; energia 10. | |
+| T3.2 | `start`, `karta`, `karta`, `lewo`, `mapa`, `dziennik` | Jeden wpis o udanym zabraniu karty; odmowy i mapa nic nie dopisują; energia 9. | OK |
+| T3.3 | `start`, `karta`, `prawo`, `bezpiecznik`, `prawo`, `dziennik` | Trzy wpisy: ruch do 2, zabranie bezpiecznika, ruch do 3. Najstarszy wpis o karcie zniknął; energia 6. | OK |
+| T3.4 | Po T3.3: `start`, `dziennik`, `odkrycia` | Pusto i tylko pokój 1; brak starych wpisów po ponownym dodawaniu. | OK |
+| T3.5 | `start`; powtórz parę (`prawo`, `lewo`) dokładnie 5 razy; następnie karta, prawo, dziennik, status | Energia 0, przegrana; ostatnie trzy wpisy odpowiadają lewo/prawo/lewo; odmowy po końcu nie zmieniają dziennika. | NUH UH |
+| T3.6 | `start`, `karta`, `prawo`, `bezpiecznik`, `prawo`, `napraw`, `prawo`, `wyjdz`, `dziennik` | Wygrana, energia 3; trzy ostatnie wpisy: naprawa, ruch do 4, udane wyjście. | OK |
+| T3.7 | Osobny projekt prób: dwa nowe obiekty a i b; a.Odwiedz(2), a.DodajWpis("A") | a: 2 odkrycia, 1 wpis; b: 1 odkrycie, 0 wpisów. | OK |
+| T3.8 | Osobny obiekt: DodajWpis(null), DodajWpis(""), DodajWpis("   "), potem DodajWpis("  A  ") | Pierwsze trzy wywołania nic nie zapisują; jeden wpis dokładnie A po ostatnim. | OK |
+| T3.9 | Osobny obiekt: Odwiedz(0), Odwiedz(5), CzyOdwiedzono(0), PobierzWpis(-1), PobierzWpis(0) | Odkrycia nadal 1; odczyt false, oba odczyty wpisu puste; bez awarii. | OK |
+| T3.10 | Osobny obiekt: wpisy A, B, C, D, E; odczyt; Reset; wpis X; odczyt | Najpierw C, D, E; potem tylko X, liczba 1; bez starych tekstów. | OK |
+| T3.11 | `start`, komenda DZIENNIK ze skrajnymi spacjami, `dziennik` | Dwa identyczne puste odczyty, energia 10. | OK |
+| T3.12 | Całe T2.1–T2.10 oraz stare TESTY.md | Te same wyniki odkryć i reguł gry po zmianie struktury. W T2.9 zachowaj próby nazw dla 0 i 5. Próbę pustej tablicy zastąp odczytem LiczbaOdwiedzonych nowego obiektu i po Reset: oba wyniki 1; po dwukrotnym Odwiedz(2) wynik 2. | OK |
