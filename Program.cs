@@ -84,14 +84,22 @@ string listaPostepu() {
     return $"[{kartaMarker}] znaleziono kartę\n[{bezpiecznikMarker}] znaleziono bezpiecznik\n[{zasilanieMarker}] przywrócono zasilanie\n[{wygranaMarker}] Wygrana!";
 }
 
-void Dziennik() {
+void Dziennik(bool sort) {
     // wypisz 3 ostatnie wpisy
     if (dziennikWypraw.LiczbaWpisow == 0) {
         Console.WriteLine("Historia jest pusta. Brak wpisów.");
     } else {
-        for (int i = 0; i < 3; i++) {
-            if (dziennikWypraw.LiczbaWpisow >= i + 1) {
-                Console.WriteLine(dziennikWypraw.PobierzWpis(i));
+        if(sort){
+            for (int i = 3; i >= 0; i--) {
+                if (dziennikWypraw.LiczbaWpisow >= i + 1) {
+                    Console.WriteLine(dziennikWypraw.PobierzWpis(i));
+                }
+            }
+        }else{
+            for (int i = 0; i < 3; i++) {
+                if (dziennikWypraw.LiczbaWpisow >= i + 1) {
+                    Console.WriteLine(dziennikWypraw.PobierzWpis(i));
+                }
             }
         }
     }
@@ -129,7 +137,8 @@ while (true) {
         case "napraw": Akcja("napraw"); break;
         case "wyjdz": Akcja("wyjdz"); break;
         case "odkrycia": PokazOdkrycia(); break;
-        case "dziennik": Dziennik(); break;
+        case "dziennik": Dziennik(false); break;
+        case "dziennik2": Dziennik(true); break;
         default: Console.WriteLine("Nieznane polecenie. Wpisz pomoc."); break;
     }
 }
@@ -206,6 +215,8 @@ void Pomoc() {
         Console.WriteLine("mapa         - cztery pokoje i jeden znacznik");
         Console.WriteLine("opis         - rozejrzenie się w aktualnym pokoju");
         Console.WriteLine("odkrycia     - odkryte pomieszczenia");
+        Console.WriteLine("dziennik     - dziennik ostatnich udanych czynności");
+        Console.WriteLine("dziennik2    - dziennik ostatnich udanych czynności sortowany od najnowszych");
     } else if (dPomoc == "4") {
         Console.WriteLine("start        - nowa gra");
         Console.WriteLine("koniec       - zamknięcie programu (wyjście z gry)");
@@ -256,7 +267,6 @@ void Rozejrzyj() {
     } else if (pokoj == 4) {
         Console.WriteLine("przypomnij kartę i prąd");
     }
-    Dziennik();
 }
 
 void Idz(string kierunek) {
