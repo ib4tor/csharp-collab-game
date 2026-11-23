@@ -1,10 +1,12 @@
 # CSharp Collab Game - Ucieczka z serwerowni
 
-- Praca odbywa się w zespołach dwu- albo trzyosobowych. 
+![this code is ass](image.png)
+
+- Praca odbywa się w zespołach dwu- albo trzyosobowych.
 - Każdy członek zespołu pracuje na:
-    - swoim komputerze
-    - swojej kopii repozytorium 
-    - swoim branchu.
+  - swoim komputerze
+  - swojej kopii repozytorium
+  - swoim branchu.
 - Gracz wydaje polecenia przez konsolę.
 
 ## 1. Misja
@@ -12,51 +14,49 @@
 Jest piątek, 16:59. W szkolnej serwerowni zgasło światło, drzwi się zablokowały, a administrator napisał: „u mnie działa”. Znajdźcie kartę i bezpiecznik, przywróćcie zasilanie i otwórzcie drzwi. Energia awaryjna wystarczy na 10 skutecznych czynności.
 
 | Numer | Pomieszczenie | Cel |
-|---|---|---|
+| --- | --- | --- |
 | 1 | Recepcja | Znaleźć kartę |
 | 2 | Magazyn | Zabrać bezpiecznik |
 | 3 | Serwerownia | Zamontować bezpiecznik |
 | 4 | Wyjście | Użyć karty przy działającym zasilaniu |
 
-- Pokoje są połączone po kolei: 
-    - w prawo numer rośnie o 1, 
-    - w lewo maleje o 1. 
-- Startujemy w pokoju 1. 
+- Pokoje są połączone po kolei:
+  - w prawo numer rośnie o 1,
+  - w lewo maleje o 1.
+- Startujemy w pokoju 1.
 - Nie ma teleportacji.
 
 ## 2. Baza startowa (co jest) - zadania dla zespołu (co trzeba dopisać)
 
 Baza startowa dla zespołu:
 
-- uruchamialny projekt, 
-- zmienne stanu, 
-- odczytywanie komend, 
-- główna pętla, 
-- reset, 
+- uruchamialny projekt,
+- zmienne stanu,
+- odczytywanie komend,
+- główna pętla,
+- reset,
 - naliczanie energii,
 - techniczny status.
 
-**Zadania dla zespołu:** 
+**Zadania dla zespołu:**
 
 - wybór "osiołka" - lidera zespołu
 
-- nazwy i opisy pomieszczeń, 
+- nazwy i opisy pomieszczeń,
 
-- pomoc, 
+- pomoc,
 
 - mapa w pętli,
 
-- ruch z kontrolą granic, 
+- ruch z kontrolą granic,
 
-- zbieranie przedmiotów, 
+- zbieranie przedmiotów,
 
 - naprawa,
 
-- otwarcie drzwi. 
+- otwarcie drzwi.
 
-    
-
-Każdy członek zespołu usuwa TODO ze swojej sekcji, dopisując działający kod. 
+Każdy członek zespołu usuwa TODO ze swojej sekcji, dopisując działający kod.
 
 Samo skasowanie komentarza nie kończy zadania.
 
@@ -71,17 +71,17 @@ dotnet --list-sdks
 dotnet --list-runtimes
 ```
 
-Projekt w paczce ma `net8.0`, ponieważ ćwiczenie używa składni dostępnej w .NET 8, 9 i 10. 
+Projekt w paczce ma `net8.0`, ponieważ ćwiczenie używa składni dostępnej w .NET 8, 9 i 10.
 
 **Przed pierwszym wspólnym commitem cały zespół musi wybrać  tę samą wersję dostępną na wszystkich stanowiskach - NAJLEPIEJ by była to net10.0**
 
 | Sprawdzony zestaw w pracowni | Linia w pliku `.csproj` |
-|---|---|
+| --- | --- |
 | SDK i runtime 8 | `<TargetFramework>net8.0</TargetFramework>` |
 | SDK i runtime 9 | `<TargetFramework>net9.0</TargetFramework>` |
 | SDK i runtime 10 | `<TargetFramework>net10.0</TargetFramework>` |
 
-Nie zakładaj, że samo SDK 10 oznacza dostępność runtime'u 8 i wszystkich pakietów potrzebnych do budowania net8.0 offline. 
+Nie zakładaj, że samo SDK 10 oznacza dostępność runtime'u 8 i wszystkich pakietów potrzebnych do budowania net8.0 offline.
 
 "Osiołek" zmienia jedną linię, sprawdza build/run i publikuje uzgodniony plik. Pozostali go pobierają; nie tworzą różnych konfiguracji na swoich branchach. Wersja 8 w paczce jest bazą tego ćwiczenia, nie decyzją o wersji późniejszego kursu MAUI.
 
@@ -109,7 +109,7 @@ Nie uruchamiaj `dotnet new console` w tym folderze: projekt już istnieje. Nie d
 Każdą komendę wpisujesz osobno i naciskasz Enter. W konsoli wpisujesz **`prawo`**, a nie `Idz("prawo")`, i **`karta`**, a nie `Akcja("karta")`. Konsola aplikacji nie wykonuje wpisanego kodu C#; nasz program rozpoznaje umówione słowa.
 
 | Komenda | Znaczenie |
-|---|---|
+| --- | --- |
 | `pomoc` | Polecenia i zasady |
 | `status` | Dane rozgrywki |
 | `mapa` | Cztery pokoje i jeden znacznik pozycji |
@@ -124,7 +124,7 @@ Każdą komendę wpisujesz osobno i naciskasz Enter. W konsoli wpisujesz **`praw
 
 - Tylko udany ruch lub udana akcja kosztuje 1 energię.
 - Informacje, pusty Enter, nieznana komenda, ściana, duplikat przedmiotu i odrzucona akcja są bezpłatne.
-- Odczyt usuwa skrajne spacje i ignoruje wielkość liter. `  PRAWO  ` znaczy to samo co `prawo`. Nie usuwamy spacji wewnątrz słowa.
+- Odczyt usuwa skrajne spacje i ignoruje wielkość liter. `PRAWO` znaczy to samo co `prawo`. Nie usuwamy spacji wewnątrz słowa.
 - Bezpiecznik po montażu znika z kieszeni; nie pojawia się ponownie na półce.
 - Przy energii 0 przegrywamy, chyba że właśnie skutecznie otwarto wyjście. Sukces ma pierwszeństwo.
 - Po wygranej/przegranej ruch i akcje niczego nie zmieniają. Informacje, start i koniec nadal działają.
@@ -140,7 +140,7 @@ cd csharp-collab-game
 git branch --show-current
 ```
 
-2. "Osiołek" uzgadnia TargetFramework, uruchamia starter i zapisuje bazę:
+1. "Osiołek" uzgadnia TargetFramework, uruchamia starter i zapisuje bazę:
 
 ```bash
 git status
@@ -150,8 +150,8 @@ git commit -m "Dodaj wspolny starter gry CSharp"
 git push origin main
 ```
 
-7. Dopiero teraz pozostali klonują **to samo** repozytorium; jeżeli już sklonowali pustą bazę, wykonują `git switch main` i `git pull --ff-only`. Każdy uruchamia `dotnet run` i sprawdza status.
-8. Wypełnijcie ZESPOL.md: osoby, sekcje, nazwy branchy, lider (czyli "osiołek") i osoba sprawdzająca. "Osiołek" commituje ten plik na main i wypycha; pozostali pobierają. Dopiero potem tworzycie branche.
+1. Dopiero teraz pozostali klonują **to samo** repozytorium; jeżeli już sklonowali pustą bazę, wykonują `git switch main` i `git pull --ff-only`. Każdy uruchamia `dotnet run` i sprawdza status.
+2. Wypełnijcie ZESPOL.md: osoby, sekcje, nazwy branchy, lider (czyli "osiołek") i osoba sprawdzająca. "Osiołek" commituje ten plik na main i wypycha; pozostali pobierają. Dopiero potem tworzycie branche.
 
 Źródła mogą być w waszym uzgodnionym katalogu repozytoriów. Jeśli pendrive dramatycznie spowalnia build, sklonujcie repo do osobnego, lokalnego katalogu SSD i pracujcie w nim. Konfiguracja klucza SSH może nadal wskazywać pendrive. Nie edytujcie dwóch lokalnych kopii równolegle i nie współdzielcie jednego katalogu roboczego między osobami. Nie commitujcie katalogów `bin` i `obj`.
 
@@ -160,7 +160,7 @@ git push origin main
 Nazwy funkcji i zmiennych są umową. Wielkość liter ma znaczenie: `Idz` i `idz` to różne nazwy. Nie zmieniajcie ich bez uzgodnienia.
 
 | Dane | Typ i wartość startowa |
-|---|---|
+| --- | --- |
 | `MAKS_ENERGIA` | `const int`, 10 |
 | `pokoj` | `int`, 1 |
 | `energia` | `int`, 10 |
@@ -168,7 +168,7 @@ Nazwy funkcji i zmiennych są umową. Wielkość liter ma znaczenie: `Idz` i `id
 | `koniec`, `wygrana` | `bool`, false |
 
 | Funkcja | Kontrakt |
-|---|---|
+| --- | --- |
 | `void Start()` | Gotowy reset wszystkich danych |
 | `void ZakonczTure()` | Gotowy koszt 1 i sprawdzenie końca |
 | `void Status()` | Gotowy podgląd danych dla testów |
@@ -186,7 +186,7 @@ To funkcje lokalne w jednym pliku z instrukcjami najwyższego poziomu. Mogą odc
 ## 7. Podział pracy
 
 | Liczba osób | Osoba A | Osoba B | Osoba C |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | 3 | Sekcja A: nazwy, pomoc, mapa, opisy | Sekcja B: ruch; zapis prób i prowadzenie integracji | Sekcja C: akcje, przedmioty, wygrana |
 | 2 | Sekcje A i B | Sekcja C oraz zapis prób |
 
@@ -253,7 +253,7 @@ Po lewo: pokój 1, energia 10. Po prawo: pokój 2, energia 9. Opis może jeszcze
 **C2. Wybierz gałąź według `co`:** if / else if / else wystarczy. Switch jest dopuszczalny, jeśli go znasz.
 
 | Akcja | Warunki sukcesu | Zmiana |
-|---|---|---|
+| --- | --- | --- |
 | karta | Pokój 1, brak karty | karta = true |
 | bezpiecznik | Pokój 2, brak bezpiecznika w kieszeni, brak zasilania | bezpiecznik = true |
 | napraw | Pokój 3, bezpiecznik w kieszeni, brak zasilania | bezpiecznik = false; zasilanie = true |
