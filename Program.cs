@@ -27,14 +27,6 @@ string OcenaEnergii(int wartosc) {
     }
 }
 
-string IloscOdkrytych(bool[] tablica) {
-    int zliczone = 0;
-    for (int i = 0; i < tablica.Length; i++) {
-        if (tablica[i]) zliczone++;
-    }
-    return zliczone + "/4";
-}
-
 string EnergiaPasek() {
     string bar = "[";
     for (int i = 0; i < energia; i++) {
@@ -48,14 +40,14 @@ string EnergiaPasek() {
 
 void PokazOdkrycia() {
     for (int i = 0; i < 4; i++) {
-        if (odwiedzonePokoje[i]) {
+        if (dziennikWypraw.CzyOdwiedzono(i)) {
             Console.WriteLine($"{i + 1} {pokoje[i]}");
         }
     }
-    Console.WriteLine($"Odkryte: {IloscOdkrytych(odwiedzonePokoje)}");
-    if (IloscOdkrytych(odwiedzonePokoje) == "2/4") {
+    Console.WriteLine($"Odkryte: {dziennikWypraw.IloscOdkrytych()}");
+    if (dziennikWypraw.IloscOdkrytych() == "2/4") {
         Console.WriteLine("Odkryto połowę mapy.");
-    } else if (IloscOdkrytych(odwiedzonePokoje) == "4/4") {
+    } else if (dziennikWypraw.IloscOdkrytych() == "4/4") {
         Console.WriteLine("Odkryto całą mapę.");
     }
 }
@@ -177,7 +169,7 @@ void ZakonczTure() {
 
 void Status() {
     Console.WriteLine("Pokoj: " + pokoj);
-    Console.WriteLine("Odkryte pokoje: " + IloscOdkrytych(odwiedzonePokoje));
+    Console.WriteLine("Odkryte pokoje: " + dziennikWypraw.IloscOdkrytych());
     Console.WriteLine("Ilosc krokow: " + movesCounter);
     Console.WriteLine("Energia: " + EnergiaPasek());
     Console.WriteLine(listaPostepu());
@@ -298,14 +290,13 @@ void Idz(string kierunek) {
         } else if (IloscOdkrytych(odwiedzonePokoje) == "3/4") {
             Console.WriteLine("Gratulacje! Znasz już całą mapę.");
         }
-    */
-}
-
-dziennikWypraw.Odwiedz(pokoj);
-movesCounter += 1;
-dziennikWypraw.DodajWpis($"Wykonano ruch w {kierunek}");
-Rozejrzyj();
-ZakonczTure();
+    }
+ */
+    dziennikWypraw.Odwiedz(pokoj);
+    movesCounter += 1;
+    dziennikWypraw.DodajWpis($"Wykonano ruch w {kierunek}");
+    Rozejrzyj();
+    ZakonczTure();
 }
 
 void Akcja(string co) {

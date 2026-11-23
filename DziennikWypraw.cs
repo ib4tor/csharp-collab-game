@@ -48,6 +48,14 @@ public class DziennikWypraw {
         }
     }
 
+    public string IloscOdkrytych() {
+        int zliczone = 0;
+        for (int i = 0; i < odwiedzonePokoje.Length; i++) {
+            if (odwiedzonePokoje[i]) zliczone++;
+        }
+        return zliczone + "/4";
+    }
+
     public void DodajWpis(string? tresc) {
         if (tresc == null || tresc == "" || tresc.Trim() == "") {
             return;
