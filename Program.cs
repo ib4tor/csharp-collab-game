@@ -40,7 +40,7 @@ string EnergiaPasek() {
 
 void Podsumowanie() {
     PokazOdkrycia();
-    Dziennik(true);
+    Dziennik(false);
 }
 
 void PokazOdkrycia() {
