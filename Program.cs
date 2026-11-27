@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 // WSPOLNY KONTRAKT. Wszystkie dane inicjalizujemy przed Start().
 const int MAKS_ENERGIA = 10;
 int pokoj = 1;
@@ -35,6 +36,11 @@ string EnergiaPasek() {
         bar += "_";
     }
     return bar + "]";
+}
+
+void Podsumowanie() {
+    PokazOdkrycia();
+    Dziennik(true);
 }
 
 void PokazOdkrycia() {
@@ -89,16 +95,16 @@ void Dziennik(bool sort) {
     if (dziennikWypraw.LiczbaWpisow == 0) {
         Console.WriteLine("Historia jest pusta. Brak wpisów.");
     } else {
-        if(sort){
+        if (sort) {
             for (int i = 3; i >= 0; i--) {
                 if (dziennikWypraw.LiczbaWpisow >= i + 1) {
                     Console.WriteLine($"{dziennikWypraw.PobierzWpis(i)}");
                 }
             }
-        }else{
+        } else {
             for (int i = 0; i < 3; i++) {
                 if (dziennikWypraw.LiczbaWpisow >= i + 1) {
-                    Console.WriteLine($"{i+1}. {dziennikWypraw.PobierzWpis(i)}");
+                    Console.WriteLine($"{i + 1}. {dziennikWypraw.PobierzWpis(i)}");
                 }
             }
         }
@@ -139,6 +145,7 @@ while (true) {
         case "odkrycia": PokazOdkrycia(); break;
         case "dziennik": Dziennik(false); break;
         case "dziennik2": Dziennik(true); break;
+        case "podsumowanie": Podsumowanie(); break;
         default: Console.WriteLine("Nieznane polecenie. Wpisz pomoc."); break;
     }
 }
@@ -217,6 +224,7 @@ void Pomoc() {
         Console.WriteLine("odkrycia     - odkryte pomieszczenia");
         Console.WriteLine("dziennik     - dziennik ostatnich udanych czynności");
         Console.WriteLine("dziennik2    - dziennik ostatnich udanych czynności sortowany od najnowszych");
+        Console.WriteLine("podsumowanie - podsumowanie twojej rozgrywki");
     } else if (dPomoc == "4") {
         Console.WriteLine("start        - nowa gra");
         Console.WriteLine("koniec       - zamknięcie programu (wyjście z gry)");
